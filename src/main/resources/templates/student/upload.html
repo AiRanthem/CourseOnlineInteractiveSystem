@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>作业上传</title>
+
+    <!-- Styles -->
+    <link href="assets/css/lib/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/css/lib/themify-icons.css" rel="stylesheet">
+    <link href="assets/css/lib/datatable/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/css/lib/datatable/buttons.bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/css/lib/menubar/sidebar.css" rel="stylesheet">
+    <link href="assets/css/lib/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/lib/helper.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="commons/sbar::topbar"/>
+<div th:replace="commons/sbar::sidebar"/>
+
+<div class="container h-100">
+    <div class="h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+            <div class="col-sm-5">
+                <h3>作业上传系统（支持多文件上传）</h3>
+                <form method="POST" enctype="multipart/form-data" id="fileUploadForm">
+                    <div class="form-group">
+                        <label class="control-label" for="files">上传作业:</label>
+                        <input type="file" class="form-control" id="files"
+                               placeholder="Upload Multiple Files"  name="files" multiple></input>
+                    </div>
+                    <button type="submit" class="btn btn-default" id="btnSubmit">上传</button>
+                    <!--    <a href="/download" class="btn btn-default" role="button">查看课件列表</a>   -->
+                </form>
+                <div th:if="${message}">
+                    <strong><span th:text="${message}"/></strong>
+                    <hr>
+                </div>
+                <ul th:each="filename: ${files}">
+                    <li><span th:text="${filename}"/></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- jquery vendor -->
+<script src="assets/js/lib/jquery.min.js"></script>
+<script src="assets/js/lib/jquery.nanoscroller.min.js"></script>
+<!-- nano scroller -->
+<script src="assets/js/lib/menubar/sidebar.js"></script>
+<script src="assets/js/lib/preloader/pace.min.js"></script>
+<!-- sidebar -->
+
+<!-- bootstrap -->
+
+<script src="assets/js/lib/bootstrap.min.js"></script><script src="assets/js/scripts.js"></script>
+<!-- scripit init-->
+<script src="assets/js/lib/data-table/datatables.min.js"></script>
+<script src="assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
+<script src="assets/js/lib/data-table/dataTables.buttons.min.js"></script>
+<script src="assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
+<script src="assets/js/lib/data-table/jszip.min.js"></script>
+<script src="assets/js/lib/data-table/pdfmake.min.js"></script>
+<script src="assets/js/lib/data-table/vfs_fonts.js"></script>
+<script src="assets/js/lib/data-table/buttons.html5.min.js"></script>
+<script src="assets/js/lib/data-table/buttons.print.min.js"></script>
+<script src="assets/js/lib/data-table/buttons.colVis.min.js"></script>
+<script src="assets/js/lib/data-table/datatables-init.js"></script>
+
+</body>
+</html>

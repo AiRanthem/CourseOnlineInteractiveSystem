@@ -1,0 +1,146 @@
+<!DOCTYPE HTML>
+<html data-dpr="1" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>注册</title>
+		<meta name="keywords" content="教务系统" />
+		<meta name="description" content="教务系统" />
+		<meta charset="utf-8" />
+		<meta name="author" content="Ringoer" />
+		<link rel="stylesheet" type="text/css" href="login-type.css" />
+		<script type="text/javascript" src="login-script.js"></script>
+	</head>
+	<body>
+		<svg aria-hidden="true" style="position: absolute; width: 0px; height: 0px; overflow:hidden;">
+			
+		</svg>
+		<div id="login-app">
+			<div class="login-app bottom-filling">
+				<div th:replace="commons/abar::topbar"/>
+				<div th:replace="commons/abar::sidebar"/>
+				<div>
+					<div class="title-line">
+						<span class="tit" style="font-size: 38px;">
+							[[${session.loginUser}]]
+						</span>
+					</div>
+					<div class="login-box clearfix">
+						<div class="login-div">
+							<div class="form-login">
+								<div id="geetest-wrap" class="input-box">
+									<ul>
+										<p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+										<form th:action="@{/addStudent}" method="post">
+											<input type="hidden" name="_method" value="put" th:if="${student!=null}"/>
+											<div class="item username status-box">
+												<label>学生号</label>
+												<input type="text" name="SID" value="" placeholder="学生号" id="reg-Sid" maxlength="16" autocomplete="off" th:value="${student!=null}?${student.SID}">
+												<span class="status"></span>
+												<div class="text clearfix">
+												</div>
+											</div>
+
+											<div class="item username status-box">
+												<label>密码</label>
+												<input type="password" name="Spass" placeholder="密码" id="reg-Spass" maxlength="16" autocomplete="off">
+												<span class="status"></span>
+												<div class="text clearfix">
+												</div>
+											</div>
+
+											<div class="item username status-box">
+												<label>姓名</label>
+												<input type="text" name="Sname" value="" placeholder="姓名" id="reg-Sname" maxlength="16" autocomplete="off" th:value="${student!=null}?${student.sname}">
+												<span class="status"></span>
+												<div class="text clearfix">
+												</div>
+											</div>
+
+											<div>
+												<span>性别</span>
+
+												<input class="form-check-input" type="radio" name="Ssex" value="男" th:checked="${student!=null}?${student.ssex=='男'}:'checked'">
+												<label class="form-check-label">男</label>
+
+												<input class="form-check-input" type="radio" name="Ssex" value="女" th:checked="${student!=null}?${student.ssex=='女'}">
+												<label class="form-check-label">女</label>
+
+											</div>
+
+											<div class="item username status-box">
+												<label>电话</label>
+												<input type="text" name="Sphone" value="" placeholder="电话" id="reg-Sphone" maxlength="20" autocomplete="off" th:value="${student!=null}?${student.sphone}">
+												<span class="status"></span>
+												<div class="text clearfix">
+												</div>
+											</div>
+											<div class="item username status-box">
+												<label>邮箱</label>
+												<input type="text" name="Semail" value="" placeholder="邮箱" id="reg-Semail" maxlength="45" autocomplete="off" th:value="${student!=null}?${student.semail}">
+												<span class="status"></span>
+												<div class="text clearfix">
+												</div>
+											</div>
+
+											</br>
+
+											<div class="form-group">
+												<label>学院</label>
+												<select class="form-control" name="department">
+													<!--												<option>请选择</option>-->
+													<option th:value="${dept.dept}" th:each="dept:${depts}" th:text="${dept.dept}">1</option>
+												</select>
+											</div>
+
+											<div class="item username status-box">
+												<label>专业</label>
+												<input type="text" name="Sdept" value="" placeholder="专业" id="reg-Sdept" maxlength="4" autocomplete="off" th:value="${student!=null}?${student.sdept}">
+												<span class="status"></span>
+												<div class="text clearfix">
+												</div>
+											</div>
+
+											<div class="item username status-box">
+												<label>年级</label>
+												<input type="text" name="Sgrade" value="" placeholder="年级" id="reg-Sgrade" maxlength="4" autocomplete="off" th:value="${student!=null}?${student.sgrade}">
+												<span class="status"></span>
+												<div class="text clearfix">
+												</div>
+											</div>
+
+											<div class="item username status-box">
+												<label>政治面貌</label>
+												<input type="text" name="Sstatus" value="" placeholder="政治面貌" id="reg-Sstatus" maxlength="12" autocomplete="off" th:value="${student!=null}?${student.sstatus}">
+												<span class="status"></span>
+												<div class="text clearfix">
+												</div>
+											</div>
+
+											<div class="item username status-box">
+												<label>籍贯</label>
+												<input type="text" name="Sbirthplace" value="" placeholder="籍贯" id="reg-Sbirthplace" maxlength="255" autocomplete="off" th:value="${student!=null}?${student.sbirthplace}">
+												<span class="status"></span>
+												<div class="text clearfix">
+												</div>
+											</div>
+
+											</br>
+											<div class="btn-box">
+												<button type="submit" class="btn btn-primary" style="background-color:#66CCFF" th:text="${student==null}?添加:修改">添加</button>
+												<a href="/studentManagement" class="btn btn-reg">返回</a>
+											</div>
+										</form>
+
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="answer">
+
+				</div>
+			</div>
+		</div>
+		
+	</body>
+</html>

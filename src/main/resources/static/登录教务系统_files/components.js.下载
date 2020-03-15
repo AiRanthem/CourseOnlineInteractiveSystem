@@ -1,0 +1,218 @@
+!function() {
+define([ "jquery" ], function(e) {
+var t = function(e) {
+e.customRadioCheckbox();
+}, a = function() {
+function t(t, c, o) {
+var r = "";
+r += a("label.slogan", {
+color:t.facade_custom.slogan_color,
+"font-size":t.facade_custom.slogan_fontsize ? t.facade_custom.slogan_fontsize + "px" :""
+}), r += a("div.main-bottom", {
+"background-color":t.facade_custom.background_color
+}), c && (r += a("div.main-bottom", {
+"background-image":"url(" + o + t.facade_custom.background[0] + ")",
+filter:'progid:DXImageTransform.Microsoft.AlphaImageLoader(src="' + o + t.facade_custom.background[0] + '", sizingMethod="scale")'
+})), r += a("button.u-btn", {
+"background-color":t.facade_custom.submit_button_color,
+color:t.facade_custom.submit_button_font_color
+}), e("#dHead").append(e('<style type="text/css">' + r + "</style>"));
+}
+function a(t, a) {
+var c = "";
+return e.isEmptyObject(a) ? c :(c += t + "{", e.each(a, function(e, t) {
+t && (c += e + ":" + t + ";");
+}), c += "}");
+}
+function c(t, a) {
+if (t.facade_custom.favor_title && (i = t.facade_custom.favor_title), t.facade_custom.favor && 0 != t.facade_custom.favor.length) {
+var c = a + t.facade_custom.favor[0];
+e("#favor").attr("href", c);
+}
+}
+window.SYS_CONST = window.SYS_CONST || {}, window.CUSTOME_DATA = window.CUSTOME_DATA || {};
+var o = CUSTOME_DATA.indexPageData2 || {}, r = !1, n = "", i = SYS_CONST.favorTitle;
+if (!e.isEmptyObject(o)) {
+var s = o.real_resource || {};
+window.DATA = e.extend(!0, {}, s, {
+orgId:o.org ? o.org :""
+}), DATA.facade_custom = DATA.facade_custom || {};
+var d = DATA.facade_custom.copyright_text;
+d && (DATA.facade_custom.copyright_text = d.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;").replace("&amp;copy;", "&copy;")), 
+r = DATA.facade_custom.background && 0 != DATA.facade_custom.background.length, n = location.protocol + "//" + location.host + "/coremail/s?func=lp:getImg&org_id=" + DATA.orgId + "&img_id=", 
+t(DATA, r, n), c(DATA, n);
+}
+if (document.title = i, !r) {
+var l = Math.round(3 * Math.random());
+e(".main-bottom").addClass("main-bottom-" + l), e(".main-middle").addClass("main-middle-" + l);
+}
+/MSIE (6|7)/i.test(navigator.userAgent) || setTimeout(function() {
+e(".aside-blur").blurjs({
+source:".main-bottom",
+radius:5,
+cacheExpired:3e4,
+cache:!1
+});
+}, 500);
+};
+return e.fn.blurjs = function(t) {
+function a(t, a, c, o, r, n) {
+var i = e.Deferred(), s = new Worker("assets/login/js/blurImg_worker.js");
+if (!(isNaN(n) || 1 > n)) {
+n |= 0;
+var d, l = t.getContext("2d");
+try {
+try {
+d = l.getImageData(a, c, o, r);
+} catch (u) {
+try {
+netscape.security.PrivilegeManager.enablePrivilege("UniversalBrowserRead"), d = l.getImageData(a, c, o, r);
+} catch (u) {
+throw alert("Cannot access local image"), new Error("unable to access local image data: " + u);
+}
+}
+} catch (u) {
+throw alert("Cannot access image"), new Error("unable to access image data: " + u);
+}
+return s.onmessage = function(e) {
+var t = e.data;
+return "afterCal" === t.type ? (l.putImageData(t.j, a, c), i.resolve()) :void 0;
+}, s.postMessage({
+type:"cal",
+d:o,
+j:d,
+g:n,
+f:r
+}), i.promise();
+}
+}
+t.cacheExpired = t.cacheExpired || Number.MAX_VALUE;
+var c = new Date().getTime(), o = document.createElement("canvas"), r = !1, n = e(this).selector.replace(/[^a-zA-Z0-9]/g, "");
+return o.getContext && "Worker" in window ? (t = e.extend({
+source:"body",
+radius:5,
+overlay:"",
+offset:{
+x:0,
+y:0
+},
+optClass:"",
+cache:!1,
+cacheKeyPrefix:"blurjs-",
+draggable:!1,
+debug:!1
+}, t), this.each(function() {
+var i = e(this), s = e(t.source), d = s.css("backgroundImage").replace(/"/g, "").replace(/url\(|\)$/gi, ""), l = o.getContext("2d"), u = new Image();
+u.onload = function() {
+function e(e) {
+var a = s.css("backgroundAttachment"), c = "fixed" == a ? "" :"-" + (i.offset().left - s.offset().left - t.offset.x) + "px -" + (i.offset().top - s.offset().top - t.offset.y) + "px";
+i.css({
+"background-image":'url("' + e + '")',
+"background-repeat":s.css("backgroundRepeat"),
+"background-position":c,
+"background-attachment":a
+}), 0 != t.optClass && i.addClass(t.optClass), t.draggable && (i.css({
+"background-attachment":"fixed",
+"background-position":"0 0"
+}), i.draggable());
+}
+r ? e(u.src) :(o.style.display = "none", o.width = u.width, o.height = u.height, l.drawImage(u, 0, 0), a(o, 0, 0, o.width, o.height, t.radius).then(function() {
+0 != t.overlay && (l.beginPath(), l.rect(0, 0, u.width, u.width), l.fillStyle = t.overlay, l.fill());
+var a = o.toDataURL();
+if (t.cache) try {
+t.debug && console.log("Cache Set"), localStorage.setItem(t.cacheKeyPrefix + n + "-" + d + "-data-image", a), cachedDate = localStorage.setItem(t.cacheKeyPrefix + n + "-" + d + "-data-image-cacheAt", c);
+} catch (r) {
+console.log(r);
+}
+e(a);
+}));
+}, Storage.prototype.cacheChecksum = function(e) {
+var a = "";
+for (var c in e) {
+var o = e[c];
+a += "[object Object]" == o.toString() ? (o.x.toString() + o.y.toString() + ",").replace(/[^a-zA-Z0-9]/g, "") :(o + ",").replace(/[^a-zA-Z0-9]/g, "");
+}
+var r = this.getItem(t.cacheKeyPrefix + n + "-" + d + "-options-cache");
+r != a && (this.removeItem(t.cacheKeyPrefix + n + "-" + d + "-options-cache"), this.setItem(t.cacheKeyPrefix + n + "-" + d + "-options-cache", a), 
+t.debug && console.log("Settings Changed, Cache Emptied"));
+};
+var g = null;
+if (t.cache) {
+localStorage.cacheChecksum(t), cachedDate = localStorage.getItem(t.cacheKeyPrefix + n + "-" + d + "-data-image-cacheAt");
+var f = parseInt(c) - parseInt(cachedDate);
+f > 0 && f < t.cacheExpired && (g = localStorage.getItem(t.cacheKeyPrefix + n + "-" + d + "-data-image"));
+}
+null != g ? (t.debug && console.log("Cache Used"), r = !0, u.src = g) :(t.debug && console.log("Source Used"), u.src = d);
+})) :void 0;
+}, e.fn.customRadioCheckbox = function(t) {
+if (this[0]) {
+var a = "-checked", c = "rc-hidden", o = "rc-disabled", r = function() {
+var t = e(this);
+t.closest("label")[0] || t.prev().trigger("change.crc", [ !0 ]);
+}, n = function(t) {
+for (var c, n, i, s = t.type, d = t.length; d--; ) i = t[d], c = e(i).prop("disabled"), n = e("<i>").addClass(s + (i.checked ? " " + s + a :"")), 
+n.bind("click.crc", r), c && n.addClass(o), i.parentNode.insertBefore(n[0], i.nextSibling);
+};
+return this.each(function() {
+var t, o = e(this), r = o.find("input[type=radio]:not(." + c + ")").addClass(c), i = o.find("input[type=checkbox]:not(." + c + ")").addClass(c), s = {}, d = r.length;
+if (r.length) {
+for (r.type = "radio", n(r); d--; ) t = r[d], t.checked && ((s[t.name] = {}).checked = e(t.nextSibling));
+r.bind("change.crc", function(t, c) {
+return e(this).prop("disabled") ? !1 :(c && this.checked || (s[this.name] || (s[this.name] = {}), s[this.name].checked && s[this.name].checked.removeClass(r.type + a), 
+s[this.name].checked = e(this.nextSibling).addClass(r.type + a)), void (c && !this.checked && (this.checked = !0)));
+});
+}
+i.length && (i.type = "checkbox", n(i), i.bind("change.crc", function(t, c) {
+return e(this).prop("disabled") ? !1 :(c && (this.checked = !this.checked), void e(this.nextSibling).toggleClass(i.type + a));
+}));
+});
+}
+}, e.cookie = function() {
+function e(e, a) {
+var c = {};
+if (t(e) && e.length > 0) for (var r, i, s, d = a ? n :o, l = e.split(/;\s/g), u = 0, g = l.length; g > u; u++) {
+if (s = l[u].match(/([^=]+)=/i), s instanceof Array) try {
+r = n(s[1]), i = d(l[u].substring(s[1].length + 1));
+} catch (f) {} else r = n(l[u]), i = "";
+r && (c[r] = i);
+}
+return c;
+}
+function t(e) {
+return "string" == typeof e;
+}
+function a(e) {
+return t(e) && "" !== e;
+}
+function c(e) {
+if (!a(e)) throw new TypeError("Cookie name must be a non-empty string");
+}
+function o(e) {
+return e;
+}
+var r = {}, n = decodeURIComponent, i = encodeURIComponent;
+return r.get = function(t, a) {
+c(t), a = "function" == typeof a ? {
+converter:a
+} :a || {};
+var r = e(document.cookie, !a.raw);
+return (a.converter || o)(r[t]);
+}, r.set = function(e, t, o) {
+c(e), o = o || {};
+var r = o.expires, n = o.domain, s = o.path;
+o.raw || (t = i(String(t)));
+var d = e + "=" + t, l = r;
+return "number" == typeof l && (l = new Date(), l.setDate(l.getDate() + r)), l instanceof Date && (d += "; expires=" + l.toUTCString()), 
+a(n) && (d += "; domain=" + n), a(s) && (d += "; path=" + s), o.secure && (d += "; secure"), document.cookie = d, d;
+}, r.remove = function(e, t) {
+return t = t || {}, t.expires = new Date(0), r.set(e, "", t);
+}, function() {
+return arguments[0] ? r[arguments[0]].apply(this, Array.prototype.slice.call(arguments, 1)) :void 0;
+};
+}(), {
+customRadioCheckbox:t,
+blurBgImg:a
+};
+});
+}();
+//# sourceMappingURL=components.js.map

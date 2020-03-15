@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>主页</title>
+    <!-- Styles -->
+    <link href="./assets/css/lib/calendar2/pignose.calendar.min.css" rel="stylesheet">
+    <link href="./assets/css/lib/chartist/chartist.min.css" rel="stylesheet">
+    <link href="./assets/css/lib/font-awesome.min.css" rel="stylesheet">
+    <link href="./assets/css/lib/themify-icons.css" rel="stylesheet">
+    <link href="./assets/css/lib/owl.carousel.min.css" rel="stylesheet" />
+    <link href="./assets/css/lib/owl.theme.default.min.css" rel="stylesheet" />
+    <link href="./assets/css/lib/weather-icons.css" rel="stylesheet" />
+    <link href="./assets/css/lib/menubar/sidebar.css" rel="stylesheet">
+    <link href="./assets/css/lib/bootstrap.min.css" rel="stylesheet">
+    <link href="./assets/css/lib/helper.css" rel="stylesheet">
+    <link href="./assets/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures" th:fragment="sidebar">
+    <div class="nano">
+        <div class="nano-content">
+            <ul>
+                <div class="logo"><a href="student_index"><!-- <img src="assets/images/logo.png" alt="" /> --><span>学生服务</span></a></div>
+                <li class="label">菜单</li>
+                <li><a href="Info"><i class="ti-user"></i> 个人信息 </a></li>
+                <li><a class="sidebar-sub-toggle"><i class="ti-bar-chart-alt"></i>  学生选课  <span class="sidebar-collapse-icon ti-angle-down"></span></a>
+                    <ul>
+                        <li><a href="courseChoosing">选课</a></li>
+                        <li><a href="courseDropping">退课</a></li>
+                    </ul>
+                </li>
+                <li><a href="download"><i class="ti-calendar"></i> 课件下载 </a></li>
+                <li><a href="upload"><i class="ti-calendar"></i> 作业上传 </a></li>
+                <li><a href="gradeInquiry"><i class="ti-calendar"></i> 成绩查询 </a></li>
+                <li><a href="student_course"><i class="ti-email"></i> 课程教学</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- /# sidebar -->
+
+<div class="header" th:fragment="topbar">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="float-left">
+                    <div class="hamburger sidebar-toggle">
+                        <span class="line"></span>
+                        <span class="line"></span>
+                        <span class="line"></span>
+                    </div>
+                </div>
+                <div class="float-right">
+                    <div class="dropdown dib">
+                        <div class="header-icon" data-toggle="dropdown">
+                                <span class="user-avatar">
+								[[${session.loginUser}]]
+                                    <i class="ti-angle-down f-s-10"></i>
+                                </span>
+                            <div class="drop-down dropdown-profile dropdown-menu dropdown-menu-right">
+                                <div class="dropdown-content-body">
+                                    <ul>
+                                        <li>
+                                            <a href="#" th:href="@{/signout}" onclick="window.location.href = '/signout';">
+                                                <i class="ti-power-off"></i>
+                                                <span>退出</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- jquery vendor -->
+<script src="./assets/js/lib/jquery.min.js"></script>
+<script src="./assets/js/lib/jquery.nanoscroller.min.js"></script>
+<!-- nano scroller -->
+<script src="./assets/js/lib/menubar/sidebar.js"></script>
+<script src="./assets/js/lib/preloader/pace.min.js"></script>
+<!-- sidebar -->
+
+<script src="./assets/js/lib/bootstrap.min.js"></script><script src="./assets/js/scripts.js"></script>
+<!-- bootstrap -->
+
+<script src="./assets/js/lib/calendar-2/moment.latest.min.js"></script>
+<script src="./assets/js/lib/calendar-2/pignose.calendar.min.js"></script>
+<script src="./assets/js/lib/calendar-2/pignose.init.js"></script>
+
+
+<script src="./assets/js/lib/weather/jquery.simpleWeather.min.js"></script>
+<script src="./assets/js/lib/weather/weather-init.js"></script>
+<script src="./assets/js/lib/circle-progress/circle-progress.min.js"></script>
+<script src="./assets/js/lib/circle-progress/circle-progress-init.js"></script>
+<script src="./assets/js/lib/chartist/chartist.min.js"></script>
+<script src="./assets/js/lib/sparklinechart/jquery.sparkline.min.js"></script>
+<script src="./assets/js/lib/sparklinechart/sparkline.init.js"></script>
+<script src="./assets/js/lib/owl-carousel/owl.carousel.min.js"></script>
+<script src="./assets/js/lib/owl-carousel/owl.carousel-init.js"></script>
+<!-- scripit init-->
+<script src="./assets/js/dashboard2.js"></script>
+</body>
+
+</html>

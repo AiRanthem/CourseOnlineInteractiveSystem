@@ -1,0 +1,1436 @@
+@media only screen and (max-width: 1600px) {
+	#wrap_nav {
+		height: 100px;
+		line-height: 100px;
+	}
+	#wrap_nav .link_box .nav_item {
+		width: 200px;
+		height: 50px;
+		line-height: 50px;
+		font-size: 18px;
+	}
+	#wrap_nav .nav_item span {
+		height: 50px;
+		line-height: 50px;
+	}
+	#wrap_nav .nav_item img {
+		width: 58px;
+		height: 58px;
+	}
+	#right_nav .right_tab {
+		top: 100px;
+	}
+	#right_nav .student_nav {
+		margin: 100px auto 0;
+		margin-left: -122px;
+	}
+	#right_nav .public_nav {
+		margin: 100px auto 50px;
+		margin-left: -140px;
+	}
+	#right_nav .search_nav {
+		margin-left: 0;
+	}
+	#right_nav .link_nav {
+		margin-left: 0;
+	}
+	#form_mark .form_con {
+		width: 1000px;
+		margin: 100px auto;
+	}
+	#form_mark .result_list .result_item {
+		width: 440px;
+	}
+	#form_mark .result_list .result_item p {
+		font-size: 20px;
+	}
+	#form_mark .result_list .result_item span {
+		font-size: 18px;
+	}
+	#container .wrap_box {
+		width: 1100px;
+		margin: 70px auto 0;
+	}
+	#information .info_left {
+		font-size: 22px;
+	}
+	#information .info_right p {
+		font-size: 16px;
+	}
+	#news ul li {
+		width: 350px;
+		height: 270px;
+	}
+	#hot_link .link_box {
+		width: 1100px;
+		padding-top: 70px;
+	}
+	#hot_link ul li .hot_item {
+		width: 356px;
+		height: 134px;
+	}
+	#hot_link ul .sHoverItem {
+		width: 210px;
+		height: 120px;
+	}
+	#hot_link ul .sIntro {
+		padding: 20px;
+		overflow: hidden;
+	}
+	#hot_link ul li p {
+		font-size: 20px;
+		width: 130px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+	#hot_link .main_visual {
+		height: 460px;
+	}
+	#hot_link {
+		height: 760px;
+	}
+	#footer {
+		margin-bottom: 100px;
+	}
+	#footer .footer_con {
+		width: 1200px;
+	}
+	#footer .footer_logo {
+		left: 20px;
+	}
+	#footer .footer_nav li .a_top {
+		font-size: 24px;
+	}
+	#footer .footer_nav li a {
+		font-size: 16px;
+	}
+	#footer .footer_nav li {
+		width: 200px;
+	}
+	/* #wrap .w1240 {
+		width: 1000px;
+
+	} */
+	/* #wrap .mm-style-1280 {
+		width: 1000px;
+	}
+	#wrap #sub_con .main_con {
+		width: 630px;
+	}
+	#wrap .tab_info .tab_btn span {
+		font-size: 22px;
+		margin-left: 2px;
+		padding-right: 36px;
+	}
+	#wrap .tab_info .tab_btn span.zc {
+		margin-left: 0;
+		background: #e1f1f9 url(../images/icon/icon_zc.png) left 30px center no-repeat;
+	}
+	#wrap .tab_info .tab_btn span.tz {
+		background: #e1f1f9 url(../images/icon/icon_tz.png) left 30px center no-repeat;
+	}
+	#wrap .tab_info .tab_btn span.xz {
+		background: #e1f1f9 url(../images/icon/icon_xz.png) left 30px center no-repeat;
+	} */
+}
+
+/* 1280 */
+
+@media only screen and (max-width: 1300px) {
+	#right_nav .right_tab {
+		width: 140px;
+	}
+	#right_nav .right_item {
+		width: 140px;
+		height: 40px;
+		line-height: 40px;
+		right: -72px;
+	}
+	#wrap #sub_con .main_con {
+		float: left;
+		width: 800px;
+		margin-left: 30px;
+	}
+	#right_nav .right_pos {
+		width: 70px;
+	}
+	#right_nav .right_pos img {
+		width: 24px;
+	}
+	#right_nav {
+		width: 510px;
+		right: -370px;
+	}
+	#right_nav .toright {
+		width: 70px;
+		font-size: 20px;
+	}
+	#right_nav .toright {
+		left: 70px;
+	}
+	#right_nav .right_con {
+		left: 140px;
+	}
+	#return {
+		width: 50px;
+		height: 50px;
+	}
+	#return img {
+		width: 26px;
+		height: 26px;
+		left: 12px;
+		top: 12px;
+	}
+}
+
+/* 手机统一适配 */
+
+@media only screen and (max-width: 479px) {
+	#wrap_logo {
+		left: 0;
+		top: 10px;
+		width: 100%;
+	}
+	#wrap_logo a:nth-child(1) img {
+		width: 40px;
+		height: 40px;
+	}
+	#wrap_logo a:nth-child(2) img {
+		width: 120px;
+	}
+	#wrap_arr {
+		display: none !important;
+	}
+	#wrap .menu_tab .tab {
+		width: 40px;
+		height: 40px;
+		margin: 0 10px;
+	}
+	#wrap .menu_tab .tab img {
+		width: 20px;
+		height: 20px;
+		margin: 2px auto;
+	}
+	#wrap .menu_tab .tab span {
+		font-size: 10px;
+	}
+	#wrap .menu_tab {
+		height: 50px;
+		margin-top: -10px;
+	}
+	/* 通知公告 */
+	#container .index_title {
+		font-size: 14px;
+		padding-bottom: 5px;
+	}
+	#container .index_title span {
+		padding-bottom: 4px;
+	}
+	#container .index_title p {
+		margin-bottom: 0;
+		width: 100%;
+	}
+	#information {
+		height: auto;
+		margin: 20px auto;
+	}
+	#information .info_item {
+		float: none;
+		width: 96%;
+		margin: 5px auto;
+		display: block;
+		height: 76px;
+	}
+	#information .info_left {
+		font-size: 14px;
+		width: 60px;
+		height: 76px;
+		line-height: 76px;
+	}
+	#information .info_right p {
+		font-size: 12px;
+		line-height: 18px;
+		padding-right: 10px;
+		margin-bottom: 2px;
+	}
+	#information .info_right span {
+		font-size: 10px;
+	}
+	#information .info_right {
+		left: 70px;
+	}
+	#container .more {
+		width: 70px;
+		height: 20px;
+		margin: 20px auto;
+	}
+	#container .wrap_box {
+		width: 100%;
+		margin: 20px auto 0;
+	}
+	/* 新闻资讯 */
+	#news {
+		margin-top: 20px;
+	}
+	#news ul li {
+		float: none;
+		margin: 5px auto;
+		width: 96%;
+		display: block;
+		height: auto;
+	}
+	#news ul li span {
+		font-size: 12px;
+		height: 30px;
+		line-height: 30px;
+	}
+	#wrap_nav {
+		position: absolute;
+		display: block !important;
+		height: 40px;
+		line-height: 40px;
+	}
+	#link_return,
+	#follow .bg_phone {
+		display: none !important;
+	}
+	#wrap_nav .link_box .nav_item {
+		font-size: 10px;
+		width: 96px;
+		height: 26px;
+		line-height: 26px;
+		margin: 0 5px;
+	}
+	#wrap_nav .nav_item img {
+		width: 26px;
+		height: 26px;
+	}
+	#wrap_nav .nav_item span {
+		height: 22px;
+		line-height: 22px;
+		width: 60px;
+		top: 2px;
+		padding-right: 20px;
+	}
+	#right_nav .right_con {
+		overflow-y: auto !important;
+	}
+	#right_nav .right_con::-webkit-scrollbar-track-piece {
+		background-color: rgba(0, 0, 0, 0);
+		border-left: 1px solid rgba(0, 0, 0, 0);
+	}
+	#right_nav .right_con::-webkit-scrollbar {
+		width: 5px;
+		height: 13px;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		border-radius: 5px;
+	}
+	#right_nav .right_con::-webkit-scrollbar-thumb {
+		background-color: rgba(255, 0, 0, 0.5);
+		background-clip: padding-box;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		border-radius: 5px;
+		min-height: 28px;
+	}
+	#right_nav .right_con::-webkit-scrollbar-thumb:hover {
+		background-color: rgba(255, 0, 0, 0.5);
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		border-radius: 5px;
+	}
+	#right_nav .student_nav {
+		padding-bottom: 50px;
+	}
+	#right_nav .public_item img {
+		width: 40px;
+		height: 40px;
+	}
+	#wrap .menu_tab {
+		margin-top: -20px;
+	}
+	/* 首页信息下载 */
+	#data_box {
+		margin: 20px auto 0;
+		height: 480px;
+	}
+	#data_over {
+		padding-top: 20px;
+	}
+	#data_over ul {
+		width: 96%;
+		margin: 0 auto 20px;
+	}
+	#data_over ul li {
+		width: 50%;
+		margin-top: 20px;
+	}
+	#data_over ul li img {
+		width: 40px;
+		height: 30px;
+	}
+	#data_over ul li span {
+		font-size: 18px;
+		margin: 5px 0;
+	}
+	#data_over ul li p {
+		font-size: 14px;
+	}
+	/* 首页-热点链接 */
+	#hot_link .link_box {
+		width: 96%;
+		padding-top: 20px;
+	}
+	#hot_link .main_visual {
+		margin-top: 0;
+	}
+	#hot_link ul li {
+		width: 360px;
+	}
+	#hot_link ul li .hot_item {
+		float: none;
+		display: block;
+		width: 360px;
+		margin: 20px auto 0;
+	}
+	#hot_link ul li p {
+		font-size: 16px;
+		width: 120px;
+	}
+	#hot_link .main_visual {
+		height: 370px;
+	}
+	#hot_link .flicking_con span {
+		width: 40px;
+		height: 6px;
+	}
+	#hot_link {
+		height: 450px;
+	}
+	/* 首页-关注我们 */
+	#follow .follow_con {
+		width: 100%;
+	}
+	#follow .follow_right {
+		position: static;
+		width: 96%;
+		margin: 20px auto;
+	}
+	#follow .follow_title {
+		margin-top: 20px;
+	}
+	#follow .follow_title p {
+		text-align: center;
+		margin-bottom: 0;
+	}
+	#follow .follow_title {
+		font-size: 18px;
+		text-align: center;
+	}
+	#follow .bg_code {
+		margin: 30px auto 20px;
+	}
+	#follow .bg_code img,
+	.weixin_num img {
+		width: 100%;
+		height: auto;
+	}
+	#follow {
+		height: 350px;
+	}
+	#footer .footer_con {
+		display: none !important;
+	}
+	#footer {
+		height: auto;
+		margin-bottom: 0;
+	}
+	#footer .footer_copy {
+		position: relative;
+		font-size: 12px;
+		width: 100%;
+		height: auto;
+		line-height: 20px;
+		padding: 5px 12px;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+	#sub_footer {
+		height: 50px;
+	}
+	#sub_footer .w1200 {
+		display: none;
+	}
+	#sub_footer #footer {
+		display: block !important;
+		top: 0;
+	}
+	/* 首页右侧菜单 */
+	#right_nav {
+		width: 360px;
+		right: -260px;
+		height: 120px;
+	}
+	#right_nav .toright {
+		font-size: 14px;
+		width: 50px;
+		left: 50px;
+		height: 30px;
+		line-height: 30px;
+		margin-top: -15px;
+	}
+	#right_nav .right_pos img {
+		width: 20px;
+	}
+	#right_nav .right_pos {
+		width: 50px;
+	}
+	#right_nav .right_tab {
+		width: 100px;
+		-webkit-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+	#right_nav .right_item {
+		width: 100px;
+		height: 30px;
+		line-height: 30px;
+		right: -50px;
+	}
+	#right_nav .right_con {
+		width: 260px;
+		left: 100px;
+	}
+	.zUIpanelScrollBox,
+	.zUIpanelScrollBar {
+		width: 4px;
+	}
+	#right_nav .student_nav {
+		width: 160px;
+		margin-left: -94px;
+	}
+	#right_nav .student_nav ul li p {
+		height: 40px;
+		line-height: 40px;
+		padding-left: 24px;
+		font-size: 14px;
+	}
+	#right_nav .student_nav li p img {
+		width: 16px;
+		height: 16px;
+		margin-top: -8px;
+	}
+	#right_nav .sub_stunav span {
+		font-size: 12px;
+	}
+	#right_nav .sub_stunav {
+		padding-left: 24px;
+	}
+	#right_nav .btn_closemark {
+		right: 10px;
+		width: 20px;
+		height: 20px;
+	}
+	#right_nav .public_item {
+		margin: 10px 4px 50px;
+		width: 66px;
+		float: none;
+		display: inline-block;
+		vertical-align: top;
+	}
+	#right_nav .public_item span {
+		font-size: 12px;
+	}
+	#right_nav .link_nav,
+	#right_nav .search_nav {
+		left: 50%;
+	}
+	#right_nav .link_nav .link_wrap {
+		width: 100%;
+	}
+	#right_nav .link_nav .link_item a {
+		font-size: 14px;
+		height: 40px;
+		line-height: 40px;
+	}
+	#right_nav .search_nav .form,
+	#right_nav .form_list,
+	#searchForm {
+		width: 100%;
+	}
+	#right_nav .search_nav .form input,
+	#searchForm input {
+		vertical-align: middle;
+		font-size: 14px;
+	}
+	#sear_right_btn {
+		width: 20px;
+		height: 20px;
+		margin-top: 5px;
+		-webkit-background-size: 100% 100%;
+		background-size: 100% 100%;
+	}
+	#sear_right_txt {
+		width: 138px;
+		height: 30px;
+	}
+	#right_nav .search_nav .form,
+	#searchForm {
+		height: 30px;
+		line-height: 30px;
+	}
+	#right_nav .form_list a {
+		font-size: 14px;
+	}
+	#right_nav .form_list p {
+		font-size: 12px;
+	}
+	#right_nav .form_lists {
+		padding: 8px 0;
+	}
+	/* 二级页面适配 */
+	#return {
+		display: none !important;
+	}
+	#wrap .w1200 {
+		width: 100%;
+	}
+	#wrap .sub_log {
+		margin-top: 10px;
+		text-align: left;
+		padding-left: 10px;
+	}
+	#wrap .sub_log a:nth-child(1) img {
+		width: 40px;
+		height: 40px;
+	}
+	#wrap .sub_log a:nth-child(2) img {
+		width: 120px;
+	}
+	#sub_banner .banner_text h2 {
+		font-size: 18px;
+	}
+	#sub_banner .banner_text span {
+		font-size: 14px;
+	}
+	#sub_banner .sub_title_l,
+	#sub_banner .sub_title_r {
+		width: 40px;
+		height: 30px;
+		-webkit-background-size: 100% 100%;
+		background-size: 100% 100%;
+		top: 10px;
+	}
+	#right_nav .right_sub_tab {
+		top: 20px;
+	}
+	#right_nav .right_link {
+		margin-top: 8px;
+	}
+	#sub_banner {
+		height: 160px;
+	}
+	#sub_banner .banner_text {
+		height: 50px;
+		margin: 10px auto;
+		padding: 0 48px;
+	}
+	#sub_content .top_page {
+		width: 96%;
+		margin: 8px auto 20px;
+		font-size: 12px;
+	}
+	/* 二级-新闻资讯 */
+	#sub_content .new_item .new_wrap {
+		width: 50%;
+	}
+	#sub_content .new_item {
+		height: 150px;
+		margin-top: 20px;
+	}
+	#sub_content .new_item .new_img span {
+		top: 10px;
+		font-size: 10px;
+		padding: 4px 6px;
+	}
+	#sub_content .new_item .new_box {
+		width: 90%;
+	}
+	#sub_content .new_item .new_title {
+		margin-top: 2px;
+		font-size: 12px;
+	}
+	#sub_content .new_item p {
+		padding-top: 4px;
+		margin-top: 4px;
+		font-size: 10px;
+		line-height: 16px;
+		text-align: justify;
+	}
+	#page_bar {
+		width: 96%;
+		margin: 20px auto 0;
+	}
+	#page_bar a {
+		font-size: 10px;
+		margin: 2px;
+		padding: 2px 8px;
+	}
+	/* 二级-新闻资讯内容页 */
+	#sub_content .news_con {
+		padding: 20px 0 0;
+	}
+	#sub_content .news_con .newsinfo_box {
+		width: 96%;
+	}
+	#sub_content .newsinfo_box h1 {
+		font-size: 18px;
+	}
+	#sub_content .newsinfo_box span {
+		font-size: 12px;
+		margin-top: 10px;
+		margin-bottom: 8px;
+	}
+	#sub_content .newsinfo_box h2 {
+		font-size: 16px;
+	}
+	#sub_content .newsinfo_box h3 {
+		font-size: 14px;
+	}
+	#sub_content .newsinfo_box p {
+		font-size: 12px;
+		line-height: 22px;
+	}
+	#sub_content .newsinfo_box a {
+		font-size: 12px;
+	}
+	#sub_content .newsinfo_box img,#wrap .main_con p img {
+		width: 90% !important;
+		height: auto !important;
+		max-width: auto;
+	}
+	#wrap #sub_con .main_con ul li,
+	#wrap #sub_con .main_con ol li,
+	#sub_content .newsinfo_box ul li,
+	#sub_content .newsinfo_box ol li {
+		font-size: 12px;
+		line-height: 22px;
+	}
+	#wrap #sub_con .main_con ul,
+	#wrap #sub_con .main_con ol,
+	#sub_content .newsinfo_box ul,
+	#sub_content .newsinfo_box ol {
+		margin-bottom: 10px;
+	}
+	table th {
+		font-size: 14px;
+	}
+	table th,
+	table td {
+		padding: 5px;
+	}
+	table td {
+		font-size: 12px;
+	}
+	#sub_content .share_ds {
+		margin: 10px 0;
+	}
+	#sub_content .share_ds .share_txt,
+	#sub_content .share_ds .bdsharebuttonbox {
+		font-size: 12px;
+		margin-right: 0;
+	}
+	#sub_content .share_ds a,
+	.bdshare-button-style0-16 .bds_more {
+		width: 20px;
+		height: 20px;
+	}
+	#sub_content .red_bar .red_con {
+		width: 96%;
+		margin: 12px auto;
+	}
+	#sub_content .red_con div {
+		width: 40%;
+	}
+	#sub_content .red_con p {
+		font-size: 12px;
+		line-height: 22px;
+		height: 40px;
+	}
+	#sub_content .red_con a.cur {
+		width: 90%;
+		margin-top: 12px;
+		font-size: 12px;
+		height: 28px;
+		line-height: 28px;
+		background: #750000 url(../images/icon/icon_new_arr.png) no-repeat right 10px center;
+	}
+	#sub_content .red_bar {
+		height: 110px;
+	}
+	#sub_content {
+		padding-bottom: 20px;
+	}
+	/* 二级-学生服务 */
+	#wrap .w1280 {
+		width: 96%;
+	}
+	#wrap .stu_info .box {
+		margin-bottom: 20px;
+		width: 44%;
+	}
+	#wrap .stu_info .box .pin {
+		width: 100%;
+	}
+	#wrap .stu_info .box .pin .pin_wrap {
+		width: 100%;
+	}
+	#wrap .stu_info .pin_t h2 {
+		font-size: 14px;
+		margin-left: 2px;
+	}
+	#wrap .stu_info .pin_t span {
+		width: 26px;
+		height: 26px;
+	}
+	#wrap .stu_info .pin_t {
+		margin-top: 10px;
+		height: 30px;
+	}
+	#wrap .stu_info .pin ul {
+		padding: 10px 0;
+	}
+	#wrap .stu_info .pin ul li {
+		height: 24px;
+		line-height: 24px;
+	}
+	#wrap .stu_info .pin ul li a {
+		font-size: 12px;
+	}
+	#wrap .stu_info_con {
+		height: auto;
+	}
+	#wrap .stu_info_con li {
+		float: none;
+		margin: 10px auto 0 !important;
+		width: 96%;
+		height: 76px;
+	}
+	#wrap .stu_info_con li .stu_left {
+		font-size: 14px;
+		width: 60px;
+		height: 76px;
+		line-height: 76px;
+	}
+	#wrap .stu_info_con li .stu_right {
+		margin: 5px 0 0 10px;
+	}
+	#wrap .stu_info_con li .stu_right p {
+		width: 250px;
+		font-size: 12px;
+		line-height: 18px;
+		padding-right: 10px;
+		margin-bottom: 2px;
+	}
+	#wrap .stu_info_con li .stu_right span {
+		font-size: 10px;
+	}
+	#wrap .stu_info_t {
+		width: 96%;
+		margin: 20px auto 0;
+	}
+	#wrap .stu_info_t span {
+		font-size: 16px;
+	}
+	#wrap .stu_info_t span:after {
+		width: 30px;
+		bottom: 2px;
+	}
+	#wrap .stu_info_t a {
+		font-size: 12px;
+	}
+	/* 二级-教师服务 */
+	#wrap .tea_info .box .h545,
+	#wrap .tea_info .box .h200,
+	#wrap .tea_info .box .h290 {
+		height: auto;
+	}
+	/* 二级-校友服务 */
+	#wrap .alumnus {
+		width: 96% !important;
+		margin: 0 auto;
+	}
+	#wrap .alumnus .alumnus_item {
+		width: 46%;
+		height: auto;
+		margin: 10px 0;
+	}
+	#wrap .alumnus .alumnus_item span {
+		width: 40px;
+		height: 40px;
+		line-height: 40px;
+		margin: 20px auto;
+	}
+	#wrap .alumnus .alumnus_item span img {
+		width: 100%;
+		height: 100%;
+	}
+	#wrap .alumnus .alumnus_item p {
+		font-size: 14px;
+		padding: 0 2px 20px;
+	}
+	#wrap .alu_new {
+		height: auto;
+		padding-bottom: 20px;
+	}
+	#wrap .pub_title {
+		margin: 20px auto 0;
+		width: 96%;
+	}
+	#wrap .pub_title span {
+		font-size: 16px;
+	}
+	#wrap .pub_title a {
+		font-size: 12px;
+	}
+	#wrap .alu_new ul {
+		height: auto;
+		margin-top: 12px;
+	}
+	#wrap .alu_new ul li {
+		float: none;
+		margin: 5px auto !important;
+		width: 96%;
+		display: block;
+		height: auto;
+	}
+	#wrap .alu_new ul li img {
+		position: relative;
+	}
+	#wrap .alu_new ul li p {
+		height: 30px;
+		line-height: 30px;
+		font-size: 12px;
+		padding: 0 10px;
+		box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+	}
+	/* 二级页面-公众服务 */
+	#wrap .info_down {
+		height: 440px;
+	}
+	#wrap .info_down ul.info_ul {
+		width: 96%;
+		margin: 0 auto 20px;
+	}
+	#wrap .info_down ul.info_ul li span {
+		font-size: 18px;
+	}
+	#wrap .info_down {
+		padding-bottom: 20px;
+	}
+	#wrap .info_down ul.info_ul li img {
+		width: 40px;
+		height: 42px;
+	}
+	/* 二级页面-学生服务内容页 */
+	#wrap #sub_con {
+		position: relative;
+	}
+	#wrap .w1240 {
+		width: 96%;
+	}
+	#wrap .left_menu {
+		display: none;
+	}
+	#wrap #sub_con .tab_left {
+		float: none;
+		margin-top: 20px;
+		width: 100%;
+	}
+	#wrap #sub_con .box .pin,
+	#wrap #sub_con .box .active,
+	#wrap #sub_con .box,
+	#wrap #sub_con .box .active {
+		width: 100%;
+	}
+	#wrap #sub_con .box .pin .pin_wrap {
+		width: 90%;
+	}
+	#wrap .stu_info .pin ul li a.on,
+	#wrap .stu_info .active ul li a:hover {
+		font-size: 14px;
+	}
+	#wrap #sub_con .main_con {
+		float: none;
+		width: 100%;
+		margin-left: 0;
+	}
+	#wrap #sub_con .main_con h1 {
+		font-size: 20px;
+		height: 50px;
+		line-height: 50px;
+	}
+	#wrap .main_con .item {
+		height: 40px;
+		line-height: 40px;
+		padding-left: 8px;
+	}
+	#wrap #sub_con .main_con .item h2 {
+		font-size: 18px;
+		margin-left: 5px;
+	}
+	#wrap #sub_con .main_con .item img {
+		width: 20px !important;
+	}
+	#wrap .main_con .list {
+		padding: 10px 12px;
+		margin: 8px auto 20px;
+		border-bottom: 2px solid #009fe9;
+	}
+	#wrap #sub_con .main_con p {
+		font-size: 12px;
+		line-height: 22px;
+		text-align: left;
+		margin-bottom: 10px;
+	}
+	#wrap #sub_con .main_con a {
+		font-size: 12px;
+	}
+	#wrap .main_con h3 {
+		font-size: 16px;
+	}
+	#wrap .update_time {
+		font-size: 12px;
+		height: 32px;
+		line-height: 32px;
+	}
+	#wrap .tab_info .tab_btn span {
+		text-align: center;
+		padding-right: 0;
+		font-size: 16px;
+		margin-left: 0;
+		height: 40px;
+		line-height: 40px;
+	}
+	#wrap .tab_info .tab_btn span.zc,
+	#wrap .tab_info .tab_btn span.tz,
+	#wrap .tab_info .tab_btn span.xz {
+		background-image: none;
+	}
+	#wrap .tab_info {
+		width: 100%;
+		margin: 20px auto 0;
+	}
+	#wrap .tab_info .tab_btn span.active {
+		border-top: 2px solid #009fe9;
+	}
+	#wrap .tab_info .tab_btn {
+		height: 40px;
+		line-height: 40px;
+	}
+	#wrap #sub_con .tab_info .tab_cons .dis ul a {
+		font-size: 12px;
+	}
+	#wrap .dis ul li:after {
+		width: 4px;
+		height: 4px;
+		top: 18px;
+	}
+	#wrap #sub_con .tab_info .tab_cons .dis ul li {
+		padding: 10px 14px;
+	}
+	#wrap .tab_cons .dis {
+		min-height: 200px;
+	}
+	/* 二级-教师内容页 */
+	#wrap .tea_info .main_con .list {
+		border-bottom: 2px solid #005aad;
+	}
+	#wrap .tea_info .tab_info .tab_btn span.active {
+		border-top: 2px solid #005aad;
+	}
+	/* 二级-校友内容页 */
+	#wrap .alumnus_info .main_con .list {
+		border-bottom: 2px solid #ffbc1c;
+	}
+	#wrap .alumnus_info .tab_info .tab_btn span.active {
+		border-top: 2px solid #ffbc1c;
+	}
+	/* 二级-公众内容页 */
+	#wrap .public_info .main_con .list {
+		border-bottom: 2px solid #8fc31e;
+	}
+	#wrap .public_info .tab_info .tab_btn span.active {
+		border-top: 2px solid #8fc31e;
+	}
+	/* 二级-通知公告 */
+	#wrap .notice .notice_tab {
+		padding: 10px;
+		-webkit-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+	#wrap .notice .notice_tab li {
+		width: 33.2%;
+		height: 16px;
+		line-height: 16px;
+	}
+	#wrap .notice .notice_tab li a {
+		font-size: 12px;
+		display: block;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+	#wrap .notice .notice_box {
+		width: 96%;
+		padding: 10px 0;
+	}
+	#wrap .notice .notice_box span {
+		font-size: 12px;
+		width: 26%;
+	}
+	#wrap .notice .notice_box a {
+		font-size: 14px;
+		margin-left: 10px;
+		width: 68%;
+	}
+	#wrap .notice .notice_list {
+		padding: 20px 0;
+	}
+	/* 二级-下载 */
+	#wrap .rules {
+		width: 96%;
+	}
+	#wrap .rules .rule_tab a {
+		font-size: 16px;
+	}
+	#wrap .rules .rule_tab a img {
+		width: 20px;
+	}
+	#wrap .rules .rule_tab a.active {
+		border-top: 2px solid #9b0000;
+	}
+	#wrap .rules .rule_tab {
+		height: 40px;
+		line-height: 40px;
+	}
+	#wrap .rules .rule_tab a img,
+	#wrap .rules .rule_tab a span {
+		margin: 0;
+	}
+	#wrap .rules .rule_con {
+		padding: 5px 0;
+	}
+	#wrap .rules .load_item img {
+		width: 30px;
+		height: 34px;
+		margin-left: 4px;
+	}
+	#wrap .rules .download {
+		width: 96%;
+	}
+	#wrap .rules .load_item .load_info {
+		width: 84%;
+		margin-left: 10px;
+	}
+	#wrap .rules .load_item .load_top {
+		font-size: 14px;
+		margin-bottom: 0;
+	}
+	#wrap .rules .load_item .load_data a {
+		font-size: 10px;
+		height: 16px;
+		line-height: 16px;
+		background-size: auto 100%;
+		margin-right: 20px;
+		padding-left: 20px;
+		margin-top: 5px;
+	}
+	#wrap .rules .load_item {
+		margin-top: 10px;
+		padding: 8px 0;
+		height: auto;
+	}
+	#wrap .info_bar {
+		height: 60px;
+		margin-top: 20px;
+		border-top: 2px solid #9b0000;
+		line-height: 62px;
+		padding-left: 120px;
+		background: #fff url(../images/download/icon_net.png) left 60px center no-repeat;
+	}
+	#wrap .info_bar a {
+		font-size: 22px;
+	}
+	/* 二级-规章制度 */
+	#wrap .rules .rule_con li {
+		height: 50px;
+		line-height: 50px;
+		padding-left: 16px;
+	}
+	#wrap .rules .rule_con li a {
+		font-size: 12px;
+	}
+	#wrap .rules .rule_con li:before {
+		width: 3px;
+		height: 3px;
+		top: 24px;
+	}
+	/* 二级-关于我们 */
+	#wrap .rules .contact_tab a.active {
+		border-top: none;
+	}
+	#wrap .rules .contact_tab a {
+		border-bottom: 2px solid #9b0000;
+	}
+	#wrap .rules .rule_tab a {
+		font-size: 12px;
+	}
+	#wrap .rules .contact_main .contact_p {
+		padding: 5px 10px;
+	}
+	#wrap .rules .contact_main .contact_p p {
+		font-size: 12px;
+		line-height: 24px;
+	}
+	#wrap .rules .contact_main .contact_t {
+		font-size: 16px;
+		height: 40px;
+		line-height: 40px;
+		padding-left: 40px;
+		margin-top: 14px;
+	}
+	#wrap .rules .contact_main .contact_t img {
+		left: 8px;
+		width: 30px;
+		height: 30px;
+		margin-top: -15px;
+	}
+	#wrap .rules .contact_main strong {
+		font-size: 12px;
+		margin: 4px 0;
+	}
+	#wrap .rules .table_box {
+		width: 100%;
+		margin: 10px auto;
+	}
+	#wrap .rules .table_box b {
+		font-size: 10px;
+		margin-bottom: 10px;
+	}
+	#wrap .rules .table_box table th {
+		font-size: 14px;
+		padding: 5px;
+	}
+	#wrap .rules .table_box table td {
+		font-size: 12px;
+	}
+	#wrap .rules .contact_main {
+		padding-bottom: 30px;
+	}
+	#wrap .rules .contact_main .contact_date {
+		margin-top: 20px;
+	}
+	#wrap .rules .contact_date span {
+		font-size: 10px;
+	}
+	#wrap .rules .contact_date img {
+		width: 16px;
+	}
+	#wrap .contact_item {
+		width: 100%;
+		-webkit-box-sizing: border-box;
+		box-sizing: border-box;
+		height: auto;
+	}
+	#wrap .contact_item .box_t {
+		height: 30px;
+		line-height: 30px;
+		font-size: 16px;
+	}
+	#wrap .contact_item .box_t img {
+		width: 20px;
+	}
+	#wrap .contact_item .abtable {
+		width: 96%;
+	}
+	#wrap .abtable .text span {
+		font-size: 10px;
+	}
+	#wrap .abtable .text span.w50 {
+		width: 40%;
+	}
+	#wrap .contact_item .abtable .text {
+		padding: 20px 0;
+	}
+	#wrap .contact_box .contact_box2 {
+		-webkit-background-size: 100% 100%;
+		background-size: 100% 100%;
+	}
+	#wrap .contact_item .contact_pos {
+		width: 100%;
+	}
+	#wrap .contact_item .contact_pos h3 {
+		font-size: 14px;
+		margin: 5px auto;
+	}
+	#wrap .contact_item .contact_pos p {
+		font-size: 10px;
+	}
+	#wrap .contact_item .contact_pos {
+		left: -120%;
+		background: #fff;
+	}
+}
+
+/* iphone5 */
+
+@media only screen and (max-width: 320px) {
+	#hot_link ul li {
+		width: 300px;
+	}
+	#hot_link ul li .hot_item {
+		width: 300px;
+	}
+	#hot_link ul li p {
+		font-size: 12px;
+		width: 80px;
+	}
+	#wrap .menu_tab {
+		margin-top: -20px;
+	}
+	#right_nav {
+		width: 300px;
+		right: -200px;
+	}
+	#right_nav .right_con {
+		width: 200px;
+	}
+	#right_nav .student_nav {
+		width: 140px;
+		margin-left: -80px;
+	}
+	#right_nav .student_nav ul li p {
+		font-size: 12px;
+	}
+	#right_nav .sub_stunav span {
+		font-size: 10px;
+	}
+	#right_nav .public_item {
+		margin: 10px 5px 50px;
+		width: 56px;
+	}
+	#right_nav .public_item span {
+		font-size: 10px;
+	}
+	#right_nav .public_item img {
+		width: 46px;
+		height: 46px;
+	}
+	#right_nav .form_list a {
+		font-size: 12px;
+	}
+	#right_nav .form_list p {
+		font-size: 10px;
+	}
+	#right_nav .link_nav .link_item a,
+	#right_nav .search_nav .form input,
+	#searchForm input {
+		font-size: 12px;
+	}
+	#sear_right_txt {
+		width: 120px;
+	}
+	#wrap .sub_log a:nth-child(1) img {
+		width: 30px;
+		height: 30px;
+	}
+	#wrap .sub_log a:nth-child(2) img {
+		width: 96px;
+	}
+	#sub_banner .banner_text h2 {
+		font-size: 16px;
+	}
+	#sub_banner .banner_text span {
+		font-size: 12px;
+		margin-top: 4px;
+	}
+	#sub_banner .sub_title_l,
+	#sub_banner .sub_title_r {
+		width: 30px;
+		height: 20px;
+	}
+	#sub_banner .banner_text {
+		padding: 0 36px;
+	}
+	#sub_banner {
+		height: 130px;
+	}
+	#right_nav .right_sub_tab {
+		top: 8px;
+	}
+	#sub_content .new_item {
+		height: 130px;
+	}
+	#sub_content .red_con p,
+	#sub_content .red_con a.cur {
+		font-size: 10px;
+	}
+	#wrap .stu_info .box {
+		width: 42%;
+	}
+	#wrap .stu_info .pin_t span {
+		width: 20px;
+		height: 20px;
+	}
+	#wrap .stu_info .pin_t h2 {
+		font-size: 12px;
+	}
+	#wrap .alumnus .alumnus_item p {
+		font-size: 12px;
+	}
+	#wrap .pub_title span {
+		font-size: 12px;
+	}
+	#wrap .pub_title a {
+		font-size: 10px;
+	}
+	#footer .footer_copy {
+		font-size: 1px;
+	}
+	#wrap .notice .notice_tab li a {
+		font-size: 10px;
+	}
+	#wrap .notice .notice_box span {
+		font-size: 10px;
+	}
+	#wrap .notice .notice_box a {
+		font-size: 12px;
+	}
+	#wrap .rules .load_item .load_info {
+		width: 80%;
+	}
+	#wrap .rules .load_item .load_top {
+		font-size: 12px;
+	}
+	#wrap .rules .load_item .load_data a {
+		height: 12px;
+		line-height: 12px;
+	}
+	#wrap .rules .rule_tab a {
+		font-size: 12px;
+	}
+	#wrap .rules .table_box table th {
+		font-size: 12px;
+		padding: 5px;
+	}
+	#wrap .rules .table_box table td {
+		font-size: 10px;
+	}
+	#wrap .stu_info_con li .stu_right p {
+		width: 210px;
+	}
+}

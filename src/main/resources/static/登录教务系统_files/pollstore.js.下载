@@ -1,0 +1,42 @@
+!function(e, t) {
+"function" == typeof define && define.amd ? define([ "jquery" ], function(n) {
+return t(e, n);
+}) :"object" == typeof module && "object" == typeof module.exports ? module.exports = t(e, require("jquery")) :t(e, window.jQuery);
+}("undefined" != typeof window ? window :this, function(e, t) {
+function n(e) {
+function n(e) {
+return "function" == typeof e;
+}
+var o = null, r = !1, c = null;
+e = t.extend({
+topic:"",
+interval:5e3,
+timeout:5e3,
+successCallback:t.noop(),
+errorCallback:t.noop()
+}, e || {}), this.subscribe = function() {
+var u = this;
+return r ? !1 :e.topic ? (c = setInterval(function() {
+o = t.ajax({
+url:e.topic,
+data:e.data || "",
+headers:{
+Accept:"text/x-json"
+},
+contentType:"text/x-json",
+type:"post",
+timeout:e.timeout
+}).done(function(t, o, r) {
+t = t || {}, "S_OK" === t.code ? n(e.successCallback) && e.successCallback(t["var"] || {}) :("FA_INVALID_SESSION" == t.code && u.unSubscribe(), 
+n(e.errorCallback) && e.errorCallback(t, o, r));
+}).fail(function(t, o, r) {
+n(e.errorCallback) && e.errorCallback(t, o, r);
+});
+}, e.interval), r = !0, this) :!1;
+}, this.unSubscribe = function() {
+c && clearInterval(c), o && (o.abort(), o = null);
+};
+}
+return e.PollStore = n, n;
+});
+//# sourceMappingURL=pollstore.js.map

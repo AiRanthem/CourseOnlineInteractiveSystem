@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>课程教学</title>
+
+    <!-- Styles -->
+    <link href="assets/css/lib/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/css/lib/themify-icons.css" rel="stylesheet">
+    <link href="assets/css/lib/datatable/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/css/lib/datatable/buttons.bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/css/lib/menubar/sidebar.css" rel="stylesheet">
+    <link href="assets/css/lib/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/lib/helper.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="login-type.css" />
+</head>
+
+<body>
+<div th:replace="commons/sbar::topbar"/>
+<div th:replace="commons/sbar::sidebar"/>
+	<div class="content-wrap">
+        <div class="main">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-8 p-r-0 title-margin-right">
+                        <div class="page-header">
+                            <div class="page-title">
+                                <h1>Hello,
+									<span>
+									[[${session.loginUser}]]
+									</span>
+								</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="login-app">
+                    <div class="login-app bottom-filling">
+
+                        <div>
+                            <div class="login-box clearfix">
+                                <div class="login-div">
+                                    <div class="form-login">
+                                        <div id="geetest-wrap" class="input-box">
+                                            <ul>
+                                                <form action="/message" id="messageform" name="messageform" method="post">
+                                                    <input type="hidden" name="mGID" th:value="${GID}">
+                                                    <div class="item username status-box">
+                                                        <input type="text" name="message" value="" placeholder="请填写留言" id="message" maxlength="500" autocomplete="off" class="">
+                                                        <span class="status"></span>
+                                                        <div class="text clearfix">
+                                                        </div>
+                                                    </div>
+                                                    </br>
+                                                    <div class="btn-box">
+                                                        <button type="submit" class="btn btn-login">提交留言</button>
+                                                    </div>
+                                                </form>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <section id="main-content">
+                    <div class="row">
+						<div class="col">
+							<div class="card card-small mb-4">
+								<div class="card-body p-0 pb-3 text-center">
+									<table class="table mb-0">
+										<thead class="bg-light">
+											<tr>
+												<th scope="col" class="border-0">留言用户</th>
+												<th scope="col" class="border-0">留言内容</th>
+											</tr>
+										</thead>
+										<tbody>
+                                        <tr th:each="msg:${msgs}">
+                                            <td>[[${msg.username}]]([[${msg.time}]])</td>
+                                            <td th:text="${msg.text}"></td>
+                                        </tr>
+
+
+
+
+<!--											<tr>-->
+<!--												<td>黄炜</td>-->
+<!--												<td>23333333</td>-->
+<!--											</tr>-->
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+
+
+    
+    <!-- jquery vendor -->
+    <script src="assets/js/lib/jquery.min.js"></script>
+    <script src="assets/js/lib/jquery.nanoscroller.min.js"></script>
+    <!-- nano scroller -->
+    <script src="assets/js/lib/menubar/sidebar.js"></script>
+    <script src="assets/js/lib/preloader/pace.min.js"></script>
+    <!-- sidebar -->
+    
+    <!-- bootstrap -->
+
+    <script src="assets/js/lib/bootstrap.min.js"></script><script src="assets/js/scripts.js"></script>
+    <!-- scripit init-->
+    <script src="assets/js/lib/data-table/datatables.min.js"></script>
+    <script src="assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
+    <script src="assets/js/lib/data-table/dataTables.buttons.min.js"></script>
+    <script src="assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
+    <script src="assets/js/lib/data-table/jszip.min.js"></script>
+    <script src="assets/js/lib/data-table/pdfmake.min.js"></script>
+    <script src="assets/js/lib/data-table/vfs_fonts.js"></script>
+    <script src="assets/js/lib/data-table/buttons.html5.min.js"></script>
+    <script src="assets/js/lib/data-table/buttons.print.min.js"></script>
+    <script src="assets/js/lib/data-table/buttons.colVis.min.js"></script>
+    <script src="assets/js/lib/data-table/datatables-init.js"></script>
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+require.config({
+paths:{
+components:"./components",
+XT5_login:"./XT5_login",
+jquery:"../../../../framework/87850/components/jquery/dist/jquery",
+"jquery.ui":"../../../../framework/87850/components/jquery.ui/ui",
+jqueryJSON:"../../87850/js/jquery.json",
+handlebars:"../../../../framework/87850/components/handlebars/handlebars",
+jsbn:"../../../../framework/87850/components/jsbn/jsbn",
+jsbn2:"../../../../framework/87850/components/jsbn/jsbn2",
+prng4:"../../../../framework/87850/components/jsbn/prng4",
+rng:"../../../../framework/87850/components/jsbn/rng",
+rsa:"../../../../framework/87850/components/jsbn/rsa",
+rsa2:"../../../../framework/87850/components/jsbn/rsa2",
+qrcode:"../../87850/js/qrcode",
+"socket-io-client":"../../87850/js/socket.io",
+pollstore:"../../87850/js/pollstore",
+wsstore:"../../87850/js/wsstore",
+sha1:"../../87850/js/sha1",
+detector:"../../87850/js/detector",
+hbshelper:"./hbshelper"
+},
+shim:{
+jsbn2:[ "jsbn" ],
+rng:[ "prng4" ],
+rsa:[ "jsbn", "rng" ],
+rsa2:[ "rsa", "jsbn2" ],
+sha1:{
+exports:"jsSHA"
+},
+jquery:{
+exports:"$"
+},
+qrcode:{
+exports:"QRCode"
+},
+wsstore:{
+exports:"WsStore"
+},
+jqueryJSON:[ "jquery" ]
+},
+waitSeconds:15
+}), require([ "XT5_login" ]);
+//# sourceMappingURL=main.js.map

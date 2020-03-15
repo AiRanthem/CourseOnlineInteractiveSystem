@@ -1,0 +1,16 @@
+define([ "handlebars" ], function(t) {
+var e = {
+or:function(t, e, r) {
+return t || e ? r.fn(this) :r.inverse(this);
+},
+getFirstElement:function(t, e) {
+return "object" == typeof t ? location.protocol + "//" + location.host + "/coremail/s?func=lp:getImg&img_id=" + t[0] + "&org_id=" + e :t;
+},
+isArrayNotNull:function(t, e) {
+return "object" == typeof t && 0 != t.length ? e.fn(this) :e.inverse(this);
+}
+};
+for (var r in e) e.hasOwnProperty(r) && t.registerHelper(r, e[r]);
+return t;
+});
+//# sourceMappingURL=hbshelper.js.map

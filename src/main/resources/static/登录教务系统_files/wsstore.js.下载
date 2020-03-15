@@ -1,0 +1,95 @@
+!function(o) {
+null == o.console && (o.console = {
+log:function() {}
+}), null == console.debug && (console.debug = console.log);
+var t = {
+SCANQRCODE:"/$org_id$/onstat/mail/$tempsid$/op_app_scanqrcode",
+OTP_AUTH:"/second_auth/$uid$/$tempsid$/op_app_authed_device_cert"
+}, n = Object.prototype, e = n.toString, i = function(o, t) {
+return function(n) {
+var e = arguments.length;
+return e ? e > 1 ? o.apply(t, arguments) :o.call(t, n) :o.call(t);
+};
+}, s = function(o) {
+return "[object Function]" === e.call(o);
+}, c = function() {}, r = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, u = function(o) {
+return null == o ? "" :(o + "").replace(r, "");
+}, h = /(,)|(\[|{)|(}|])|"(?:[^"\\\r\n]|\\["\\\/bfnrt]|\\u[\da-fA-F]{4})*"\s*:?|true|false|null|-?(?!0\d)\d+(?:\.\d+|)(?:[eE][+-]?\d+|)/g, l = function(o) {
+if (window.JSON && window.JSON.parse) return window.JSON.parse(o + "");
+var t, n = null, e = u(o + "");
+return e && !u(e.replace(h, function(o, e, i, s) {
+return t && e && (n = 0), 0 === n ? o :(t = i || e, n += !s - !i, "");
+})) ? Function("return " + e)() :console.debug("Invalid JSON: " + o);
+}, a = function(o) {
+return -1 !== o && new Date().getTime() > o;
+}, d = {
+topic:null,
+observer:null,
+authMeta:{},
+host:null,
+io:null,
+maxConnTimes:3,
+connTimes:0,
+expireTime:-1,
+socket:null,
+isReady:!1,
+_init:function(o) {
+return null == o.io ? (console.log("invalid io factory for websocket conn!"), !1) :null == o.host ? (console.log("invalid host for websocket conn!"), 
+!1) :null == o.authMeta ? (console.log("invalid authMeta for websocket conn!"), !1) :(this.host = o.host, this.io = o.io, 
+this.authMeta = o.authMeta, this.expireTime = o.expireTime || this.expireTime, void this._on());
+},
+_on:function() {
+this.socket = this.io.connect(this.host, {
+forceNew:!0
+}), this.socket.on("connect", i(this._onConnect, this)).on("auth_error", i(this._onAuthError, this)).on("ready", i(this._onReady, this)).on("message", i(this._onMessage, this)).on("connect_error", i(this._onConnectError, this)).on("connect_timeout", i(this._onConnectTimeout, this)).on("disconnect", i(this._onDisconnect, this)).on("reconnecting", i(this._onReconnecting, this));
+},
+destroy:function() {
+this.unSubscribe();
+},
+subscribe:function(o, t, n) {
+return ++d.uid, null == n ? !1 :(this.topic = o, this.observer = s(t) ? t :c, void this._init(n));
+},
+unSubscribe:function() {
+this._doUnSubscribe(), this._destroySocket(), delete this.tempSid;
+},
+_doUnSubscribe:function() {
+this.socket && this.socket.emit("unsubscribe", {
+topic:this.topic
+}), delete this.topic, delete this.observer, this.authMeta = {};
+},
+_destroySocket:function() {
+this.socket && this.socket.emit("disconnect").close(), this.socket = null, this.connTimes = 0, this.isReady = !1;
+},
+_onConnect:function() {
+return this.connTimes > this.maxConnTimes || a(this.expireTime) ? (this._destroySocket(), !1) :(this.socket.emit("auth", this.authMeta), 
+void ++this.connTimes);
+},
+_onAuthError:function() {
+console.log("websocket auth error");
+},
+_onReady:function() {
+console.log("websocket ready"), this.isReady = !0, this.socket.emit("subscribe", {
+topic:this.topic
+});
+},
+_onMessage:function(o) {
+console.log(o);
+var t = o.topic, n = l(o.payload);
+t == this.topic && this.observer(n);
+},
+_onConnectError:function(o) {
+console.log("websocket connectError: " + o);
+},
+_onConnectTimeout:function() {
+console.log("websocket connect timeout");
+},
+_onDisconnect:function(o) {
+console.log("websocket disconnect: " + o);
+},
+_onReconnecting:function() {
+this._onConnect();
+}
+};
+d.topics = t, window.WsStore = d;
+}("undefined" != typeof window ? window :this);
+//# sourceMappingURL=wsstore.js.map

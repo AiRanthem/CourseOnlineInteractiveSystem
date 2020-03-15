@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>选课</title>
+
+	<!-- Styles -->
+	<link href="assets/css/lib/font-awesome.min.css" rel="stylesheet">
+	<link href="assets/css/lib/themify-icons.css" rel="stylesheet">
+	<link href="assets/css/lib/datatable/dataTables.bootstrap.min.css" rel="stylesheet" />
+	<link href="assets/css/lib/datatable/buttons.bootstrap.min.css" rel="stylesheet" />
+	<link href="assets/css/lib/menubar/sidebar.css" rel="stylesheet">
+	<link href="assets/css/lib/bootstrap.min.css" rel="stylesheet">
+	<link href="assets/css/lib/helper.css" rel="stylesheet">
+	<link href="assets/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+<div th:replace="commons/sbar::topbar"/>
+<div th:replace="commons/sbar::sidebar"/>
+
+<div class="content-wrap">
+	<div class="main">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-8 p-r-0 title-margin-right">
+					<div class="page-header">
+						<div class="page-title">
+							<h1>Hello,
+								<span>
+									[[${session.loginUser}]]
+								</span>
+							</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+			<section id="main-content">
+				<div class="row">
+					<div class="col">
+						<button type="button" class="btn btn-default btn-outline btn-rounded m-b-10" href="#">院系必修课</button>
+						<button type="button" class="btn btn-primary btn-outline btn-rounded m-b-10 m-l-5" href="#">院系选修课</button>
+						<button type="button" class="btn btn-success btn-outline btn-rounded m-b-10 m-l-5" href="#">全校选修课</button>
+						<button type="button" class="btn btn-info btn-outline btn-rounded m-b-10 m-l-5" href="#">公共课</button>
+						<div class="card card-small mb-4">
+							<div class="card-body p-0 pb-3 text-center">
+								<table class="table mb-0">
+									<thead class="bg-light">
+									<tr>
+										<th scope="col" class="border-0">课程编号</th>
+										<th scope="col" class="border-0">课程名称</th>
+										<th scope="col" class="border-0">学分</th>
+										<th scope="col" class="border-0">上课时间</th>
+										<th scope="col" class="border-0">上课地点</th>
+										<th scope="col" class="border-0">选课人数</th>
+										<th scope="col" class="border-0">人数上限</th>
+										<th scope="col" class="border-0">授课老师</th>
+										<th scope="col" class="border-0">课程描述</th>
+										<th scope="col" class="border-0">操作</th>
+									</tr>
+									</thead>
+									<tbody>
+									<tr th:each="c:${courses}">
+										<td th:text="${c.CID}"></td>
+										<td th:text="${c.cname}"></td>
+										<td th:text="${c.ccredit}"></td>
+										<td th:text="${c.cstart_time}+'-'+${c.cend_time}"></td>
+										<td th:text="${c.csite}"></td>
+										<td th:text="${c.cnum}"></td>
+										<td th:text="${c.climit}"></td>
+										<td th:text="${c.tname}"></td>
+										<td th:text="${c.cremark}"></td>
+										<td>
+											<button th:attr="del_uri=@{/courseChoosing_}+${c.CID}+'_'+${c.TID}" class="btn btn-sm btn-primary chooseBtn">选课</button>
+										</td>
+									</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<form id="deleteEmpForm"  method="post">
+				<input type="hidden" name="_method" value="put"/>
+				<input type="hidden" name="SID" th:if="${emp!=null}" th:value="${emp.SID}">
+			</form>
+			<!--				<input type="hidden" class="errorText" th:if="err!=null" th:value="${err.text}">-->
+		</div>
+	</div>
+</div>
+
+
+
+
+<!-- jquery vendor -->
+<script src="assets/js/lib/jquery.min.js"></script>
+<script src="assets/js/lib/jquery.nanoscroller.min.js"></script>
+<!-- nano scroller -->
+<script src="assets/js/lib/menubar/sidebar.js"></script>
+<script src="assets/js/lib/preloader/pace.min.js"></script>
+<!-- sidebar -->
+
+<!-- bootstrap -->
+
+<script src="assets/js/lib/bootstrap.min.js"></script><script src="assets/js/scripts.js"></script>
+<!-- scripit init-->
+<script src="assets/js/lib/data-table/datatables.min.js"></script>
+<script src="assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
+<script src="assets/js/lib/data-table/dataTables.buttons.min.js"></script>
+<script src="assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
+<script src="assets/js/lib/data-table/jszip.min.js"></script>
+<script src="assets/js/lib/data-table/pdfmake.min.js"></script>
+<script src="assets/js/lib/data-table/vfs_fonts.js"></script>
+<script src="assets/js/lib/data-table/buttons.html5.min.js"></script>
+<script src="assets/js/lib/data-table/buttons.print.min.js"></script>
+<script src="assets/js/lib/data-table/buttons.colVis.min.js"></script>
+<script src="assets/js/lib/data-table/datatables-init.js"></script>
+
+
+<script>
+	$(".chooseBtn").click(function(){
+		//选课
+		$("#deleteEmpForm").attr("action",$(this).attr("del_uri")).submit();
+		return false;
+	});
+	// $(document).ready(function () {
+	// 	if($(".errorText")!=null)
+	// 	{
+	// 		alert($(".errorText").val());
+	// 	}
+	// })
+</script>
+
+
+
+
+
+
+
+</body>
+
+</html>

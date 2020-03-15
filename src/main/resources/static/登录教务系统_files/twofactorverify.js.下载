@@ -1,0 +1,155 @@
+!function() {
+define([ "jquery", "hbshelper", "pollstore", "wsstore", "socket-io-client" ], function(t, e, i, n, a) {
+var s = "f-dn", r = "disabled", o = null, c = null, u = null, l = null, d = null, h = null, f = null, m = function(t) {
+t = "boolean" == typeof t ? t :!1, t ? (u.addClass(s), c.removeClass(s)) :(c.addClass(s), u.removeClass(s));
+}, p = function(t) {
+this.authData = t.authData, this._render(), this._initEvents();
+};
+p.prototype = {
+constructor:p,
+submit:function() {
+var e = l.find(".j-code"), i = t.trim(e.val()).toUpperCase();
+u.find("#verifyCellCode").val(i), f.trigger("click");
+},
+cancel:function() {
+this._offEvents();
+},
+_render:function() {
+l.html(e.compile(t("#smsVerifyTpl").html())(this.authData));
+},
+_initEvents:function() {
+l.off("click", ".j-send").on("click", ".j-send", t.proxy(this._handleSendCode, this));
+},
+_offEvents:function() {
+l.off("click", ".j-send");
+},
+_handleSendCode:function() {
+u.find("#resendCellCode").prop("disabled", !1), f.trigger("click");
+}
+};
+var v = function(t) {
+this.authData = t.authData, this._render();
+};
+v.prototype = {
+constructor:v,
+submit:function() {
+var e = l.find(".j-code"), i = t.trim(e.val());
+u.find(".j-form-dynamicPwd").val(i), f.trigger("click");
+},
+cancel:function() {},
+_render:function() {
+l.html(e.compile(t("#dynamic1VerifyTpl").html())(this.authData));
+}
+};
+var y = function(t) {
+this.authData = t.authData, this.authType = this.authEnums.PUSH, this.$verifyWrap = null, this.observer = null, this._render();
+};
+y.prototype = {
+constructor:y,
+authEnums:{
+PUSH:1,
+CODE:2
+},
+submit:function() {
+var e, i;
+this.authType === this.authEnums.PUSH ? i = "" :(e = l.find(".j-code"), i = t.trim(e.val())), this._doSubmit(i);
+},
+cancel:function() {
+null != this.observer && this.observer.unSubscribe();
+},
+_doSubmit:function(t) {
+null != this.observer && this.observer.unSubscribe(), u.find(".j-form-dynamicPwd").val(t), f.trigger("click");
+},
+_render:function() {
+l.html(e.compile(t("#dynamic2VerifyWrapTpl").html())()), this.$verifyWrap = l.find(".j-dynamic2-verify"), this.authType === this.authEnums.CODE ? this._renderCode() :this._renderPush(), 
+this._prepareValidate();
+},
+_renderPush:function() {
+var i = this;
+this.authType = this.authEnums.PUSH, h.addClass(r).addClass(s), this.$verifyWrap.html(e.compile(t("#dynamic2PushVerifyTpl").html())(this.authData)), 
+this.$verifyWrap.off("click", ".j-toggle").on("click", ".j-toggle", function() {
+i._renderCode();
+});
+},
+_renderCode:function() {
+var i = this;
+this.authType = this.authEnums.code, h.removeClass(r).removeClass(s), this.$verifyWrap.html(e.compile(t("#dynamic2CodeVerifyTpl").html())(this.authData)), 
+this.$verifyWrap.off("click", ".j-toggle").on("click", ".j-toggle", function() {
+i._renderPush();
+});
+},
+_prepareValidate:function() {
+var e = this, i = this.authData;
+t.ajax({
+type:"POST",
+url:"../s/json?func=user:triggerSecondAuth",
+data:'{"trans": "login", "tempSid": "' + i.tempSession + '"}',
+headers:{
+Accept:"text/x-json"
+},
+contentType:"text/x-json"
+}).done(function(t) {
+t && t.code && "S_OK" !== t.code || e._subscribeValidate();
+}).fail(function() {});
+},
+_subscribeValidate:function() {
+var e = this, o = n.topics.OTP_AUTH, c = this.authData;
+"WebSocket" in window ? (o = o.replace("$uid$", c.uid), o = o.replace("$tempsid$", c.tempSession), n.subscribe(o, function(e) {
+var i = e.payload.trans;
+return "login" !== i ? (alert("invalid trans"), !1) :(n.unSubscribe(), void t.ajax({
+type:"POST",
+url:"../s/json?func=user:querySecondAuthValidateStage",
+data:'{"trans": "login", "tempSid": "' + c.tempSession + '"}',
+headers:{
+Accept:"text/x-json"
+},
+contentType:"text/x-json"
+}).done(function(t) {
+t && t.code && "S_OK" !== t.code || t["var"] && "VALIDATED" === t["var"].stage && (h.removeClass(r).removeClass(s), h.trigger("click"));
+}).fail(function() {}));
+}, {
+authMeta:{
+clientId:"webmail:" + c.tempSession,
+sid:c.tempSession,
+TmpSes:1
+},
+io:a,
+host:e.authData.host
+}), this.observer = n) :this.observer = new i({
+topic:"../s/json?func=user:querySecondAuthValidateStage",
+data:'{"trans": "login", "tempSid": "' + c.tempSession + '"}',
+successCallback:function(t) {
+t.stage && "VALIDATED" === t.stage && (h.removeClass(r).removeClass(s), h.trigger("click"));
+},
+errorCallback:function(t) {
+"FA_INVALID_SESSION" === t.code && (e.observer.unSubscribe(), alert("FA_INVALID_SESSION"));
+}
+}).subscribe();
+}
+};
+var b = function(e) {
+var i;
+return t.isEmptyObject(e) ? !1 :(o = e.authData, c = e.$authWrap, u = e.$loginForm, l = c.find(".j-auth-body"), d = c.find(".j-auth-footer"), 
+h = d.find(".j-confirm"), f = u.find(".j-submit"), o.dynamic1 ? i = new v({
+authData:o
+}) :o.dynamic2 ? i = new y({
+authData:o
+}) :o.sms && (i = new p({
+authData:o
+})), m(!0), d.off("click", ".j-confirm").on("click", ".j-confirm", function() {
+var n;
+if (e.authData.needVerifyCode) {
+if (n = t.trim(c.find(".j-vc-verify-code").val()), !n.length) return void alert(e.authData.emptyVerifyCodeMsg);
+u.find(".j-vc-verify-code").val(n.toUpperCase());
+}
+i.submit();
+}), void d.off("click", ".j-back").on("click", ".j-back", function() {
+i.cancel(), m(!1);
+}));
+};
+return {
+initVerify:b
+};
+});
+}();
+//# sourceMappingURL=twofactorverify.js.map

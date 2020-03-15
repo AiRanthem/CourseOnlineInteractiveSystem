@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<html data-dpr="1" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>注册</title>
+	<meta name="keywords" content="教务系统" />
+	<meta name="description" content="教务系统" />
+	<meta charset="utf-8" />
+	<meta name="author" content="Ringoer" />
+	<link rel="stylesheet" type="text/css" href="login-type.css" />
+</head>
+<body>
+
+<svg aria-hidden="true" style="position: absolute; width: 0px; height: 0px; overflow:hidden;">
+
+</svg>
+<div id="login-app">
+	<div class="login-app bottom-filling">
+
+		<div>
+			<div class="title-line">
+						<span class="tit" style="font-size: 38px;">
+							ようこそ
+						</span>
+			</div>
+			<div class="login-box clearfix">
+				<div class="login-div">
+					<div class="form-login">
+						<div id="geetest-wrap" class="input-box">
+
+
+							<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+								<ul>
+									<form th:action="@{/setInfo}" method="post">
+										<input type="hidden" name="SID" th:value="${sid}">
+										<div class="item username status-box">
+											<input type="text" name="Sname" value="" placeholder="姓名" id="reg-Sname" maxlength="16" autocomplete="off" class="">
+											<span class="status"></span>
+											<div class="text clearfix">
+											</div>
+										</div>
+
+										<div>
+											<span>性别：</span>
+
+											<input class="form-check-input" type="radio" name="Ssex" value="男">
+											<label class="form-check-label">男</label>
+
+											<input class="form-check-input" type="radio" name="Ssex" value="女">
+											<label class="form-check-label">女</label>
+
+										</div>
+
+										<div class="item username status-box">
+											<input type="text" name="Sphone" value="" placeholder="电话" id="reg-Sphone" maxlength="20" autocomplete="off" class="">
+											<span class="status"></span>
+											<div class="text clearfix">
+											</div>
+										</div>
+										<div class="item username status-box">
+											<input type="text" name="Semail" value="" placeholder="邮箱" id="reg-Semail" maxlength="45" autocomplete="off" class="">
+											<span class="status"></span>
+											<div class="text clearfix">
+											</div>
+										</div>
+
+										</br>
+
+										<div class="form-group">
+											<label>department</label>
+											<select class="form-control" name="department">
+<!--												<option>请选择</option>-->
+												<option th:value="${dept.dept}" th:each="dept:${depts}" th:text="${dept.dept}">1</option>
+											</select>
+										</div>
+
+										<div class="item username status-box">
+											<input type="text" name="Sgrade" value="" placeholder="年级" id="reg-Sgrade" maxlength="4" autocomplete="off" class="">
+											<span class="status"></span>
+											<div class="text clearfix">
+											</div>
+										</div>
+
+										<div class="item username status-box">
+											<input type="text" name="Sstatus" value="" placeholder="政治面貌" id="reg-Sstatus" maxlength="12" autocomplete="off" class="">
+											<span class="status"></span>
+											<div class="text clearfix">
+											</div>
+										</div>
+
+										<div class="item username status-box">
+											<input type="text" name="Sbirthplace" value="" placeholder="籍贯" id="reg-Sbirthplace" maxlength="255" autocomplete="off" class="">
+											<span class="status"></span>
+											<div class="text clearfix">
+											</div>
+										</div>
+
+										</br>
+										<div class="btn-box">
+											<button type="submit" class="btn btn-primary" style="background-color:#66CCFF" th:text="确认注册">确认注册</button>
+											<a href="login" class="btn btn-reg">返回登录</a>
+										</div>
+									</form>
+
+								</ul>
+							</main>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="answer">
+
+
+
+
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="login-script.js"></script>
+</body>
+</html>

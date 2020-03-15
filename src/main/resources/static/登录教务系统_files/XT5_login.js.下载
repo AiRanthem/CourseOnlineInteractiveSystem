@@ -1,0 +1,412 @@
+define([ "jquery", "components", "hbshelper", "rsa2", "./twofactorverify", "qrcode", "wsstore", "socket-io-client", "pollstore", "sha1", "jqueryJSON", "detector" ], function(e, t, a, n, o, i, r, s, c, l, d, u) {
+function f() {
+SYS_CONST.imgCDN && e("body").addClass("cdn");
+}
+function p() {
+var t = window.DATA || {}, n = a.compile(e("#contentTpl").html()), i = n(t);
+e("div.main div.content").html(i);
+var r = a.compile(e("#asideTpl").html()), s = r(t);
+e("div.main div.aside").html(s), (SYS_CONST.secondAuthMeta.sms || SYS_CONST.secondAuthMeta.dynamic1 || SYS_CONST.secondAuthMeta.dynamic2) && o.initVerify({
+authData:SYS_CONST.secondAuthMeta,
+$authWrap:e(".j-second-auth-wrap"),
+$loginForm:e(".j-login-form")
+});
+}
+function m(e) {
+var t = {};
+return function(a) {
+var n = t[a];
+return null == n ? t[a] = e(a) :n;
+};
+}
+function h() {
+$ = e(".j-login-form"), q = function(e) {
+return $.find(e);
+}, X = m(q);
+}
+function S() {
+$.submit();
+}
+function v() {
+e(".loginArea").on("click", '[role="dropdown"]', function(t) {
+var a = e(this).find(".u-menu");
+a.hasClass("u-menu-show") || e(".u-menu").removeClass("u-menu-show").addClass("u-menu-hidden"), a.toggleClass("u-menu-hidden u-menu-show"), 
+t.stopPropagation();
+}).on("click", "a[logintype]", function() {
+var t = e(this).attr("logintype"), a = e(this).closest(".loginArea"), n = a.attr("curtype");
+t != n && a.toggleClass(n + " " + t).attr("curtype", t), "QRCode" == t && SYS_CONST.appScanLogin.enable && (R(), F());
+}).on("click", ".backToScan", function() {
+U("waitScan");
+}).on("click", ".headImage i", function() {
+location.reload();
+}), e(".u-menu").on("click", "li", function(t) {
+var a = e(this).closest('[role="dropdown"]');
+a.find("li .iconfont").remove(), e(this).addClass("u-menu-choose").append('<i class="iconfont iconchoose left"></i>'), a.hasClass("locale") ? (e("#locale").val(e(this).data("locale")), 
+O()) :a.hasClass("faceMenu") ? (X(".faceTxt").html(e(this).data("facetxt")), X("#faceName").val(e(this).data("facetxt")), 
+X("#face").val(e(this).data("face"))) :a.hasClass("domainMenu") && (X(".domainTxt").html(e(this).data("domain")), X("#domain").val(e(this).data("domain"))), 
+e(this).closest(".u-menu").removeClass("u-menu-show").addClass("u-menu-hidden"), t.stopPropagation();
+}), e("[data-operation]").on("click", function() {
+var t = e(this).data("operation");
+switch (t) {
+case "addFavourite":
+try {
+window.external.AddFavorite(location.href, document.title), e(this).addClass("favourite");
+} catch (a) {
+try {
+window.sidebar.addPanel(location.href, document.title, ""), e(this).addClass("favourite");
+} catch (a) {
+alert(e(this).data("msg"));
+}
+}
+break;
+
+case "refresh":
+var n = e(".securityCode img"), o = n.attr("src"), i = parseInt(1e8 * Math.random());
+o = o.replace(/rand=-?\d*/, "rand=" + i), n.attr("src", o);
+break;
+
+case "recoverPwdUrl":
+var r = e(this).attr("href"), s = X("#uid").val();
+if (s) {
+var c = r.indexOf("?");
+if (-1 !== c) {
+var l, d, u = r.substr(0, c), f = r.substr(c + 1), p = f.split("&"), m = "";
+for (l = 0; l < p.length; l++) if (d = p[l], -1 !== d.indexOf("uid")) {
+var h = d.split("=");
+h[1] = s, m += h[0] + "=" + h[1] + "&";
+} else m += d + "&";
+m = m.substr(0, m.length - 1), e(this).attr("href", u + "?" + m);
+} else r += "?uid=" + s, e(this).attr("href", r);
+}
+}
+}), X(".inputArea").on("focus", "input", function() {
+e(this).closest(".input-wrapper").prev().addClass("actived");
+}).on("err.focus", "input", function() {
+e(this).trigger("focus"), e(this).closest(".input-wrapper").prev().addClass("error"), "uid" == e(this).attr("id") && e(".forPassword label").addClass("error");
+}).on("blur", "input", function() {
+e(this).closest(".input-wrapper").prev().removeClass("error actived");
+}), e(document).on("click", '[role!="dropdown"]', function() {
+e(".u-menu").removeClass("u-menu-show").addClass("u-menu-hidden");
+}), e(".j-ssl-login-button").on("click", function() {
+var e = $.attr("action");
+location.href = "https://" + location.hostname + (80 != location.port ? ":" + location.port :"") + e.replace(/index.jsp.*/, "index_ca.jsp");
+}), X(".j-submit").on("click", function() {
+k();
+}), $.on("keypress", function(e) {
+var t = e.keyCode ? e.keyCode :e.which ? e.which :e.charCode;
+return 13 == t ? (X(".j-submit").trigger("click"), !1) :!0;
+});
+}
+function g() {
+e.ajax({
+type:"GET",
+url:"/coremail/XT5/jsp/mail.jsp",
+data:{
+func:"getWeather"
+},
+dataType:"json",
+success:function(t) {
+if ("S_OK" == t.code) {
+var a = t["var"].weather.status;
+if ("success" == a) {
+var n = t["var"].weather.results[0], o = n.currentCity, i = n.weather_data[0], r = i.temperature, s = i.dayPictureUrl, c = i.nightPictureUrl;
+e("#weatherInfo").html(r + " | " + o);
+var l;
+l = new Date().getHours() >= 18 ? c.substring(c.lastIndexOf("/") + 1, c.lastIndexOf(".")) :s.substring(s.lastIndexOf("/") + 1, s.lastIndexOf(".")), 
+e("#weatherPic").addClass("icon" + l), e("#weather").show();
+} else e("#weather").hide();
+}
+},
+error:function() {}
+});
+}
+function C() {
+var t = e.cookie("get", ee.uid);
+"undefined" !== e.type(t) && X("#uid").val(t);
+var a = e.cookie("get", ee.saveUsername);
+X("#saveUsername").length && X("#saveUsername").prop("checked", "true" === a);
+var n = e.cookie("get", ee.domain);
+"undefined" !== e.type(n) && X('[data-domain="' + n + '"]').trigger("click");
+var o = e.cookie("get", ee.face);
+if ("undefined" !== e.type(o) && X('[data-face="' + o + '"]').trigger("click"), SYS_CONST.enablePasswordKey && SYS_CONST.encryptHash) {
+var i = new RSAKey();
+i.setPrivateEx(B, W, J, Q, V, G, z, Z);
+var r = i.decrypt(SYS_CONST.encryptHash), s = JSON.parse(r);
+X("#fakePassword").val(s.password);
+}
+}
+function b() {
+var e, t, a = SYS_CONST.focusEleName, n = SYS_CONST.empty_error, o = SYS_CONST.error_other;
+e = X("password" == a && SYS_CONST.enablePasswordKey ? "#fakePassword" :'[name="' + a + '"]'), 0 != e.length && (n || o ? (e.trigger("err.focus"), 
+t = e.parents(".u-form-item"), P(t)) :e.trigger("focus"));
+}
+function w(t, a) {
+var n = SYS_CONST.lookupPath, o = SYS_CONST.lookupDefaultDomain, i = X("#uid"), r = i.val(), s = D(r), c = X("#useSSL").prop("checked") || !1;
+if (e.isFunction(t) || (t = e.noop), e.isFunction(a) || (t = e.noop), "string" != typeof n) return a();
+if (!s.length) return a();
+if (!I(s)) {
+if (!o.length) return x(i), P(i), A(SYS_CONST.loginErrIncompleteEmail), t(SYS_CONST.loginErrIncompleteEmail);
+s = r + "@" + o;
+}
+var l = null, d = {
+uid:s,
+useSSL:c,
+forAdmin:!1,
+type:"jsonp"
+};
+e.ajax({
+url:n,
+type:"GET",
+dataType:"jsonp",
+jsonp:"callback",
+data:d,
+timeout:5e3,
+success:function(e) {
+var n = e;
+n ? "LOAD_FAILED" == n ? l = SYS_CONST.loginErrLookupLoadFailed :n.match(/^ERROR:/) && (l = n.substring("ERROR:".length)) :(x(i), 
+P(i), l = SYS_CONST.loginErrUnknownEmail), l ? (A(l), t(l)) :(n += -1 != n.indexOf("?") ? "&lookupCallback=1" :"?lookupCallback=1", 
+a(n));
+},
+error:function() {
+l = "Unknown error", A(l), t(l);
+}
+});
+}
+function k() {
+E();
+var t = $, a = X("#face"), n = a.val();
+"auto" == n && (n = "XT5"), "XT5" == n && /MSIE (6|7)/i.test(navigator.userAgent) && (n = "XT3"), a.val(n), e.cookie("set", ee.face, n, {
+expires:30,
+path:"/"
+});
+var o = X("#locale");
+0 != o.length && e.cookie("set", ee.locale, o.val(), {
+expires:30,
+path:"/"
+});
+var i = X("#uid");
+i.val(D(j(i.val())));
+var r = X("#saveUsername").length ? X("#saveUsername").prop("checked") :!1;
+if (r) {
+e.cookie("set", ee.saveUsername, !0, {
+expires:30,
+path:"/"
+}), e.cookie("set", ee.uid, i.val(), {
+expires:30,
+path:"/"
+});
+var s = X("#domain");
+0 != s.length && e.cookie("set", ee.domain, s.val(), {
+expires:30,
+path:"/"
+});
+} else e.cookie("remove", ee.saveUsername, {
+path:"/"
+}), e.cookie("remove", ee.uid, {
+path:"/"
+});
+var c = X("#useSSL").prop("checked") || !1, l = t.attr("action");
+if (SYS_CONST.enableSpeedTest) {
+var d = e.cookie("get", ee.netSpeedServerHost);
+if (d) {
+var u = location.protocol + "//" + d;
+location.pathname && (u += location.pathname), l = u;
+}
+}
+var f = function(e) {
+if (SYS_CONST.enablePasswordKey) {
+var t, a = X("#fakePassword").val(), n = SYS_CONST.publicKey_e, o = SYS_CONST.publicKey_n;
+if (a) {
+t = new RSAKey(), t.setPublic(B, W);
+var i = t.encrypt(JSON.stringify({
+password:a
+}));
+e += -1 == e.indexOf("?") ? "?hash=" + i :"&hash=" + i;
+}
+n && o && a && (t = new RSAKey(), t.setPublic(o, n), X("#password").val(t.encrypt(a)));
+}
+return e;
+}, p = function(e) {
+var a = c ? "http://" :"https://", n = c ? "https://" :"http://";
+e = L(e, a, n), t.attr("action", e);
+};
+SYS_CONST.lookupPath ? w(function() {
+return !1;
+}, function(e) {
+"string" == typeof e && e.length && (l = e), p(f(l)), T();
+}) :(p(f(l)), T());
+}
+function T() {
+_(), Y(), S();
+}
+function O() {
+X('[name="action:login"]').remove(), S();
+}
+function y() {
+var t, a, n, o, i, r = X("#uid"), s = te, c = function(e) {
+return "string" == typeof e && e.length ? ('"' === e[0] && '"' === e[e.length - 1] && (e = e.slice(1, -1)), e) :e;
+}, d = Math.ceil(new Date().getTime() / 1e3), u = r.val();
+return u = D(j(u)), (t = e.cookie("get", s.token + u)) ? (t = c(t), a = c(e.cookie("get", s.secret + u) || ""), n = c(e.cookie("get", s.nonce + u) || ""), 
+i = new l("SHA-1", "TEXT", {
+numRounds:1
+}), i.update("accessToken=" + encodeURIComponent(t) + "&nonce=" + encodeURIComponent(n) + "&timestamp=" + encodeURIComponent(d) + "&secret=" + encodeURIComponent(a)), 
+o = i.getHash("B64"), {
+token:t,
+secret:a,
+nonce:n,
+signature:o,
+timestamp:d
+}) :{};
+}
+function _() {
+var e = y();
+e.token && X(".j-access-token").val(e.token), e.timestamp && X(".j-timestamp").val(e.timestamp), e.signature && X(".j-signature").val(e.signature), 
+e.nonce && X(".j-nonce").val(e.nonce);
+}
+function N() {
+var e, t, a = new Date().getTime(), n = u.device, o = u.os, i = u.browser, r = "na";
+i.name === r ? e = r :(e = i.name, "-1" !== i.version && (e += " " + i.version)), t = n.name === r || "pc" === n.name ? o.name :n.name;
+var s = {
+uuid:"webmail_" + a,
+imie:"webmail_" + a,
+friendlyName:e,
+model:t,
+os:o.name,
+osLanguage:navigator.language,
+deviceType:"Webmail"
+};
+return s;
+}
+function Y() {
+var t = N();
+X(".j-device").val(e.toJSON(t));
+}
+function x(e) {
+return null != e && e.length ? void e.focus().closest(".input-wrapper").prev().addClass("error") :!1;
+}
+function A(e) {
+X("#warnOrErrDiv").removeClass("f-dn").addClass("errMsg").html(e);
+}
+function E() {
+X("#warnOrErrDiv").addClass("f-dn").removeClass("errMsg").html("");
+}
+function j(t) {
+if ("string" != typeof t || !t.length) return "";
+var a = new RegExp("\\s*" + String.fromCharCode(12290) + "\\s*", "g");
+return e.trim(t.replace(/\s*@\s*/g, "@").replace(a, "."));
+}
+function D(e) {
+var t, a, n;
+return "string" != typeof e && (e = X("#uid").val()), e.length ? (n = e.indexOf("@"), -1 === n && (t = X("#domain"), t.length && (a = t.val()) ? e = e + "@" + a :null != SYS_CONST.primaryDomain && SYS_CONST.primaryDomain.length && (e = e + "@" + SYS_CONST.primaryDomain)), 
+e) :"";
+}
+function I(e) {
+return "string" != typeof e ? !1 :e.indexOf("@") > -1;
+}
+function L(t, a, n) {
+var o, i, r = location.port;
+if ("" != r && e.cookie("set", ee.portinfo, location.protocol + "," + r, {
+expires:1,
+path:"/"
+}), "/" == t.charAt(0)) return location.protocol + "//" != n ? (r = "", o = e.cookie("get", ee.portinfo) || "", i = o.split(",")[0], 
+i + "//" === n && (r = o.split(",")[1]), n + location.hostname + (r ? ":" + r :"") + t) :t;
+if (t.substring(0, a.length).toLowerCase() == a) {
+var s = t.indexOf("/", a.length), c = t.lastIndexOf(":", s);
+return s > 0 && c > 0 && t.substring(c + 1, s).match(/^\d+$/) ? n + t.substring(a.length, c) + t.substring(s) :n + t.substring(a.length);
+}
+return t;
+}
+function P(t) {
+var a = t.parents(".u-form-item");
+if (e.support.leadingWhitespace) a.addClass("animated shake"); else {
+for (var n = a.offset() - a.width(), o = n.left, i = n.top, r = 1; 5 >= r; r++) r % 2 == 0 ? a.animate({
+left:"+6px"
+}, 80) :a.animate({
+left:"-6px"
+}, 80);
+a.animate({
+left:0
+}, 150), a.offset({
+top:i,
+left:o
+});
+}
+}
+function R() {
+var t = e(".QRCodeImage .wrapper");
+0 == t.children().length && new i(t[0], {
+text:H(SYS_CONST.appScanLogin.tempSession),
+width:100,
+height:100,
+colorDark:"#000000",
+colorLight:"#ffffff",
+correctLevel:i.CorrectLevel.H
+});
+}
+function F() {
+function t(e) {
+u && u.unSubscribe(), a(e);
+}
+function a(e) {
+var t = e.payload || {};
+U(t.status), "appVerify" == t.status && (o(t.avatar, t.gender), i(t.trueName, t.email)), "final" == t.status && (u && u.unSubscribe(), 
+r && r.unSubscribe(), setTimeout(function() {
+location.href = K(t.sid, t.cookiecheck);
+}, 500));
+}
+function n(e) {
+e = e || {}, "FA_INVALID_SESSION" == e.code && U("loginFail");
+}
+function o(t, a) {
+a = a || "0";
+var n = "assets/87850/images/" + ("0" == a ? "man.png" :"woman.png");
+e(".headImage img").attr("src", t ? t :n);
+}
+function i(t, a) {
+e(".headImageArea .loggedUsername").html(t ? t :a);
+}
+var c = "../getProcessStatus.jsp?sid=" + SYS_CONST.appScanLogin.tempSession, l = "onstat/mail/$sid$/op_app_qrcode_login".replace("$sid$", SYS_CONST.appScanLogin.tempSession), d = e(".QRCodeImage"), u = d.data("poll");
+u || (u = new PollStore({
+topic:c,
+successCallback:a,
+errorCallback:n
+}).subscribe(), "WebSocket" in window && r.subscribe(l, t, {
+io:s,
+host:SYS_CONST.appScanLogin.host,
+authMeta:{
+sid:SYS_CONST.appScanLogin.tempSession,
+TmpSes:1,
+ClientId:"webmail:" + SYS_CONST.appScanLogin.tempSession
+}
+}), d.data("poll", u));
+}
+function U(t) {
+return t ? void e(".QRCodeLogin").attr("curstatus", function(a, n) {
+return n = n || "", n != t ? (e(this).toggleClass(n + " " + t), t) :n;
+}) :!1;
+}
+function M() {
+return [ location.protocol, "//", location.host, "/coremail/" ].join("");
+}
+function H(e) {
+return [ M(), "qr/", e ].join("");
+}
+function K(e, t) {
+return [ M(), "XT5/index.jsp?sid=", e, "&Cookie.Coremail=", t ].join("");
+}
+var $, X, q, B = "C4E3F7212602E1E396C0B6623CF11D26204ACE3E7D26685E037AD2507DCE82FC\n28F2D5F8A67FC3AFAB89A6D818D1F4C28CFA548418BD9F8E7426789A67E73E41", W = "10001", J = "7cd1745aec69096129b1f42da52ac9eae0afebbe0bc2ec89253598dcf454960e\n3e5e4ec9f8c87202b986601dd167253ee3fb3fa047e14f1dfd5ccd37e931b29d", Q = "f0e4dd1eac5622bd3932860fc749bbc48662edabdf3d2826059acc0251ac0d3b", V = "d13cb38fbcd06ee9bca330b4000b3dae5dae12b27e5173e4d888c325cda61ab3", G = "b3d5571197fc31b0eb6b4153b425e24c033b054d22b9c8282254fe69d8c8c593", z = "968ffe89e50d7b72585a79b65cfdb9c1da0963cceb56c3759e57334de5a0ac3f", Z = "d9bc4f420e93adad9f007d0e5744c2fe051c9ed9d3c9b65f439a18e13d6e3908", ee = {
+uid:"uid",
+saveUsername:"saveUsername",
+domain:"domain",
+face:"face",
+locale:"locale",
+netSpeedServerHost:"netSpeedServerHost",
+portinfo:"portinfo"
+}, te = {
+token:"Coremail.token.",
+secret:"Coremail.secret.",
+nonce:"Coremail.nonce."
+};
+window.SYS_CONST = window.SYS_CONST || {}, f(), t.blurBgImg(), p(), h(), v(), b(), g(), C(), e(document).customRadioCheckbox();
+});
+//# sourceMappingURL=XT5_login.js.map

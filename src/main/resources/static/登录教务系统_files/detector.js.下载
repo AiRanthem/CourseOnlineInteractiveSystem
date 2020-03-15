@@ -1,0 +1,250 @@
+!function() {
+define(function(e, n, r) {
+function o(e) {
+if (!t.re_msie.test(e)) return null;
+var n, r, o, i, a;
+if (-1 !== e.indexOf("trident/") && (n = /\btrident\/([0-9.]+)/.exec(e), n && n.length >= 2)) {
+o = n[1];
+var b = n[1].split(".");
+b[0] = parseInt(b[0], 10) + 4, a = b.join(".");
+}
+n = t.re_msie.exec(e), i = n[1];
+var s = n[1].split(".");
+return "undefined" == typeof a && (a = i), s[0] = parseInt(s[0], 10) - 4, r = s.join("."), "undefined" == typeof o && (o = r), 
+{
+browserVersion:a,
+browserMode:i,
+engineVersion:o,
+engineMode:r,
+compatible:o !== r
+};
+}
+function i(e) {
+var n = l.parse(e), r = o(e);
+if (r) {
+var i = n.engine.name, a = r.engineVersion || r.engineMode, t = parseFloat(a), b = r.engineMode;
+n.engine = {
+name:i,
+version:t,
+fullVersion:a,
+mode:parseFloat(b),
+fullMode:b,
+compatible:r ? r.compatible :!1
+}, n.engine[n.engine.name] = t;
+var s = n.browser.name, u = n.browser.fullVersion;
+"ie" === s && (u = r.browserVersion);
+var d = r.browserMode, c = parseFloat(u);
+n.browser = {
+name:s,
+version:c,
+fullVersion:u,
+mode:parseFloat(d),
+fullMode:d,
+compatible:r ? r.compatible :!1
+}, n.browser[s] = c;
+}
+return n;
+}
+var a = function() {
+function e(e) {
+return function(n) {
+return Object.prototype.toString.call(n) === "[object " + e + "]";
+};
+}
+function n(e, n) {
+for (var r = 0, o = e.length; o > r && n.call(e, e[r], r) !== !1; r++) ;
+}
+function r(e, n, r) {
+var o = u(n) ? n.call(null, r) :n;
+if (!o) return null;
+var a = {
+name:e,
+version:i,
+codename:""
+};
+if (o === !0) return a;
+if (t(o)) {
+if (-1 !== r.indexOf(o)) return a;
+} else {
+if (s(o)) return o.hasOwnProperty("version") && (a.version = o.version), a;
+if (b(o)) {
+var d = o.exec(r);
+if (d) return d.length >= 2 && d[1] ? a.version = d[1].replace(/_/g, ".") :a.version = i, a;
+}
+}
+}
+function o(e, o, i, t) {
+var b = a;
+n(o, function(n) {
+var o = r(n[0], n[1], e);
+return o ? (b = o, !1) :void 0;
+}), i.call(t, b.name, b.version);
+}
+var i = "-1", a = {
+name:"na",
+version:i
+}, t = e("String"), b = e("RegExp"), s = e("Object"), u = e("Function"), d = function(e) {
+this._rules = e;
+};
+return d.prototype.parse = function(e) {
+e = (e || "").toLowerCase();
+var n = {};
+o(e, this._rules.device, function(e, r) {
+var o = parseFloat(r);
+n.device = {
+name:e,
+version:o,
+fullVersion:r
+}, n.device[e] = o;
+}, n), o(e, this._rules.os, function(e, r) {
+var o = parseFloat(r);
+n.os = {
+name:e,
+version:o,
+fullVersion:r
+}, n.os[e] = o;
+}, n);
+var r = this.IEMode(e);
+return o(e, this._rules.engine, function(e, o) {
+var i = o;
+r && (o = r.engineVersion || r.engineMode, i = r.engineMode);
+var a = parseFloat(o);
+n.engine = {
+name:e,
+version:a,
+fullVersion:o,
+mode:parseFloat(i),
+fullMode:i,
+compatible:r ? r.compatible :!1
+}, n.engine[e] = a;
+}, n), o(e, this._rules.browser, function(e, o) {
+var i = o;
+r && ("ie" === e && (o = r.browserVersion), i = r.browserMode);
+var a = parseFloat(o);
+n.browser = {
+name:e,
+version:a,
+fullVersion:o,
+mode:parseFloat(i),
+fullMode:i,
+compatible:r ? r.compatible :!1
+}, n.browser[e] = a;
+}, n), n;
+}, d.prototype.IEMode = function(e) {
+if (!this._rules.re_msie.test(e)) return null;
+var n, r, o, i, a;
+if (-1 !== e.indexOf("trident/") && (n = /\btrident\/([0-9.]+)/.exec(e), n && n.length >= 2)) {
+o = n[1];
+var t = n[1].split(".");
+t[0] = parseInt(t[0], 10) + 4, a = t.join(".");
+}
+n = this._rules.re_msie.exec(e), i = n[1];
+var b = n[1].split(".");
+return "undefined" == typeof a && (a = i), b[0] = parseInt(b[0], 10) - 4, r = b.join("."), "undefined" == typeof o && (o = r), 
+{
+browserVersion:a,
+browserMode:i,
+engineVersion:o,
+engineMode:r,
+compatible:o !== r
+};
+}, d;
+}(), t = function() {
+function e(e) {
+if (r) try {
+var o = r.twGetRunPath.toLowerCase(), i = r.twGetSecurityID(n), a = r.twGetVersion(i);
+if (o && -1 === o.indexOf(e)) return !1;
+if (a) return {
+version:a
+};
+} catch (t) {}
+}
+var n = "undefined" == typeof window ? global :window, r = n.external, o = /\b(?:msie |ie |trident\/[0-9].*rv[ :])([0-9.]+)/, i = /\bbb10\b.+?\bversion\/([\d.]+)/, a = /\bblackberry\b.+\bversion\/([\d.]+)/, t = /\bblackberry\d+\/([\d.]+)/, b = "-1", s = [ [ "nokia", function(e) {
+return -1 !== e.indexOf("nokia ") ? /\bnokia ([0-9]+)?/ :/\bnokia([a-z0-9]+)?/;
+} ], [ "samsung", function(e) {
+return -1 !== e.indexOf("samsung") ? /\bsamsung(?:[ \-](?:sgh|gt|sm))?-([a-z0-9]+)/ :/\b(?:sgh|sch|gt|sm)-([a-z0-9]+)/;
+} ], [ "wp", function(e) {
+return -1 !== e.indexOf("windows phone ") || -1 !== e.indexOf("xblwp") || -1 !== e.indexOf("zunewp") || -1 !== e.indexOf("windows ce");
+} ], [ "pc", "windows" ], [ "ipad", "ipad" ], [ "ipod", "ipod" ], [ "iphone", /\biphone\b|\biph(\d)/ ], [ "mac", "macintosh" ], [ "mi", /\bmi[ \-]?([a-z0-9 ]+(?= build|\)))/ ], [ "hongmi", /\bhm[ \-]?([a-z0-9]+)/ ], [ "aliyun", /\baliyunos\b(?:[\-](\d+))?/ ], [ "meizu", function(e) {
+return e.indexOf("meizu") >= 0 ? /\bmeizu[\/ ]([a-z0-9]+)\b/ :/\bm([0-9cx]{1,4})\b/;
+} ], [ "nexus", /\bnexus ([0-9s.]+)/ ], [ "huawei", function(e) {
+var n = /\bmediapad (.+?)(?= build\/huaweimediapad\b)/;
+return -1 !== e.indexOf("huawei-huawei") ? /\bhuawei\-huawei\-([a-z0-9\-]+)/ :n.test(e) ? n :/\bhuawei[ _\-]?([a-z0-9]+)/;
+} ], [ "lenovo", function(e) {
+return -1 !== e.indexOf("lenovo-lenovo") ? /\blenovo\-lenovo[ \-]([a-z0-9]+)/ :/\blenovo[ \-]?([a-z0-9]+)/;
+} ], [ "zte", function(e) {
+return /\bzte\-[tu]/.test(e) ? /\bzte-[tu][ _\-]?([a-su-z0-9\+]+)/ :/\bzte[ _\-]?([a-su-z0-9\+]+)/;
+} ], [ "vivo", /\bvivo(?: ([a-z0-9]+))?/ ], [ "htc", function(e) {
+return /\bhtc[a-z0-9 _\-]+(?= build\b)/.test(e) ? /\bhtc[ _\-]?([a-z0-9 ]+(?= build))/ :/\bhtc[ _\-]?([a-z0-9 ]+)/;
+} ], [ "oppo", /\boppo[_]([a-z0-9]+)/ ], [ "konka", /\bkonka[_\-]([a-z0-9]+)/ ], [ "sonyericsson", /\bmt([a-z0-9]+)/ ], [ "coolpad", /\bcoolpad[_ ]?([a-z0-9]+)/ ], [ "lg", /\blg[\-]([a-z0-9]+)/ ], [ "android", /\bandroid\b|\badr\b/ ], [ "blackberry", function(e) {
+return e.indexOf("blackberry") >= 0 ? /\bblackberry\s?(\d+)/ :"bb10";
+} ] ], u = [ [ "wp", function(e) {
+return -1 !== e.indexOf("windows phone ") ? /\bwindows phone (?:os )?([0-9.]+)/ :-1 !== e.indexOf("xblwp") ? /\bxblwp([0-9.]+)/ :-1 !== e.indexOf("zunewp") ? /\bzunewp([0-9.]+)/ :"windows phone";
+} ], [ "windows", /\bwindows nt ([0-9.]+)/ ], [ "macosx", /\bmac os x ([0-9._]+)/ ], [ "ios", function(e) {
+return /\bcpu(?: iphone)? os /.test(e) ? /\bcpu(?: iphone)? os ([0-9._]+)/ :-1 !== e.indexOf("iph os ") ? /\biph os ([0-9_]+)/ :/\bios\b/;
+} ], [ "yunos", /\baliyunos ([0-9.]+)/ ], [ "android", function(e) {
+return e.indexOf("android") >= 0 ? /\bandroid[ \/-]?([0-9.x]+)?/ :e.indexOf("adr") >= 0 ? e.indexOf("mqqbrowser") >= 0 ? /\badr[ ]\(linux; u; ([0-9.]+)?/ :/\badr(?:[ ]([0-9.]+))?/ :"android";
+} ], [ "chromeos", /\bcros i686 ([0-9.]+)/ ], [ "linux", "linux" ], [ "windowsce", /\bwindows ce(?: ([0-9.]+))?/ ], [ "symbian", /\bsymbian(?:os)?\/([0-9.]+)/ ], [ "blackberry", function(e) {
+var n = e.match(i) || e.match(a) || e.match(t);
+return n ? {
+version:n[1]
+} :"blackberry";
+} ] ], d = [ [ "edgehtml", /edge\/([0-9.]+)/ ], [ "trident", o ], [ "blink", function() {
+return "chrome" in n && "CSS" in n && /\bapplewebkit[\/]?([0-9.+]+)/;
+} ], [ "webkit", /\bapplewebkit[\/]?([0-9.+]+)/ ], [ "gecko", function(e) {
+var n = e.match(/\brv:([\d\w.]+).*\bgecko\/(\d+)/);
+return n ? {
+version:n[1] + "." + n[2]
+} :void 0;
+} ], [ "presto", /\bpresto\/([0-9.]+)/ ], [ "androidwebkit", /\bandroidwebkit\/([0-9.]+)/ ], [ "coolpadwebkit", /\bcoolpadwebkit\/([0-9.]+)/ ], [ "u2", /\bu2\/([0-9.]+)/ ], [ "u3", /\bu3\/([0-9.]+)/ ] ], l = [ [ "edge", /edge\/([0-9.]+)/ ], [ "sogou", function(e) {
+return e.indexOf("sogoumobilebrowser") >= 0 ? /sogoumobilebrowser\/([0-9.]+)/ :e.indexOf("sogoumse") >= 0 ? !0 :/ se ([0-9.x]+)/;
+} ], [ "theworld", function() {
+var n = e("theworld");
+return "undefined" != typeof n ? n :/theworld(?: ([\d.])+)?/;
+} ], [ "360", function(n) {
+var r = e("360se");
+return "undefined" != typeof r ? r :-1 !== n.indexOf("360 aphone browser") ? /\b360 aphone browser \(([^\)]+)\)/ :/\b360(?:se|ee|chrome|browser)\b/;
+} ], [ "maxthon", function() {
+try {
+if (r && (r.mxVersion || r.max_version)) return {
+version:r.mxVersion || r.max_version
+};
+} catch (e) {}
+return /\b(?:maxthon|mxbrowser)(?:[ \/]([0-9.]+))?/;
+} ], [ "micromessenger", /\bmicromessenger\/([\d.]+)/ ], [ "qq", /\bm?qqbrowser\/([0-9.]+)/ ], [ "green", "greenbrowser" ], [ "tt", /\btencenttraveler ([0-9.]+)/ ], [ "liebao", function(e) {
+if (e.indexOf("liebaofast") >= 0) return /\bliebaofast\/([0-9.]+)/;
+if (-1 === e.indexOf("lbbrowser")) return !1;
+var n;
+try {
+r && r.LiebaoGetVersion && (n = r.LiebaoGetVersion());
+} catch (o) {}
+return {
+version:n || b
+};
+} ], [ "tao", /\btaobrowser\/([0-9.]+)/ ], [ "coolnovo", /\bcoolnovo\/([0-9.]+)/ ], [ "saayaa", "saayaa" ], [ "baidu", /\b(?:ba?idubrowser|baiduhd)[ \/]([0-9.x]+)/ ], [ "ie", o ], [ "mi", /\bmiuibrowser\/([0-9.]+)/ ], [ "opera", function(e) {
+var n = /\bopera.+version\/([0-9.ab]+)/, r = /\bopr\/([0-9.]+)/;
+return n.test(e) ? n :r;
+} ], [ "oupeng", /\boupeng\/([0-9.]+)/ ], [ "yandex", /yabrowser\/([0-9.]+)/ ], [ "ali-ap", function(e) {
+return e.indexOf("aliapp") > 0 ? /\baliapp\(ap\/([0-9.]+)\)/ :/\balipayclient\/([0-9.]+)\b/;
+} ], [ "ali-ap-pd", /\baliapp\(ap-pd\/([0-9.]+)\)/ ], [ "ali-am", /\baliapp\(am\/([0-9.]+)\)/ ], [ "ali-tb", /\baliapp\(tb\/([0-9.]+)\)/ ], [ "ali-tb-pd", /\baliapp\(tb-pd\/([0-9.]+)\)/ ], [ "ali-tm", /\baliapp\(tm\/([0-9.]+)\)/ ], [ "ali-tm-pd", /\baliapp\(tm-pd\/([0-9.]+)\)/ ], [ "uc", function(e) {
+return e.indexOf("ucbrowser/") >= 0 ? /\bucbrowser\/([0-9.]+)/ :e.indexOf("ubrowser/") >= 0 ? /\bubrowser\/([0-9.]+)/ :/\buc\/[0-9]/.test(e) ? /\buc\/([0-9.]+)/ :e.indexOf("ucweb") >= 0 ? /\bucweb([0-9.]+)?/ :/\b(?:ucbrowser|uc)\b/;
+} ], [ "chrome", / (?:chrome|crios|crmo)\/([0-9.]+)/ ], [ "android", function(e) {
+return -1 !== e.indexOf("android") ? /\bversion\/([0-9.]+(?: beta)?)/ :void 0;
+} ], [ "blackberry", function(e) {
+var n = e.match(i) || e.match(a) || e.match(t);
+return n ? {
+version:n[1]
+} :"blackberry";
+} ], [ "safari", /\bversion\/([0-9.]+(?: beta)?)(?: mobile(?:\/[a-z0-9]+)?)? safari\// ], [ "webview", /\bcpu(?: iphone)? os (?:[0-9._]+).+\bapplewebkit\b/ ], [ "firefox", /\bfirefox\/([0-9.ab]+)/ ], [ "nokia", /\bnokiabrowser\/([0-9.]+)/ ] ];
+return {
+device:s,
+os:u,
+browser:l,
+engine:d,
+re_msie:o
+};
+}(), b = navigator.userAgent || "", s = navigator.appVersion || "", u = navigator.vendor || "", d = b + " " + s + " " + u, l = new a(t), c = i(d);
+c.parse = i, r.exports = c;
+});
+}();
+//# sourceMappingURL=detector.js.map

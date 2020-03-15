@@ -1,0 +1,17 @@
+
+.cdn .main-middle-0 {
+background-image: url('../img/mainBg0.jpg');
+filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/mainBg0.jpg', sizingMethod='scale')
+}
+.cdn .main-middle-1 {
+background-image: url('../img/mainBg1.jpg');
+filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/mainBg1.jpg', sizingMethod='scale')
+}
+.cdn .main-middle-2 {
+background-image: url('../img/mainBg2.jpg');
+filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/mainBg2.jpg', sizingMethod='scale')
+}
+.cdn .main-middle-3 {
+background-image: url('../img/mainBg3.jpg');
+filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../img/mainBg3.jpg', sizingMethod='scale')
+}

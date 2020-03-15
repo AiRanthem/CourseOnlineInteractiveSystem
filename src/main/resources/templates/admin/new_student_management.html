@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>超管系统</title>
+
+    <!-- Styles -->
+    <link href="assets/css/lib/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/css/lib/themify-icons.css" rel="stylesheet">
+    <link href="assets/css/lib/datatable/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/css/lib/datatable/buttons.bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/css/lib/menubar/sidebar.css" rel="stylesheet">
+    <link href="assets/css/lib/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/lib/helper.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div th:replace="commons/abar::topbar"/>
+    <div th:replace="commons/abar::sidebar"/>
+
+    <div class="content-wrap">
+        <div class="main">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-8 p-r-0 title-margin-right">
+                        <div class="page-header">
+                            <div class="page-title">
+                                <h1>Hello,
+									<span>
+									[[${session.loginUser}]]
+									</span>
+								</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h2><a class="btn btn-sm btn-success" href="emp" th:href="@{/addStudent}">学生添加</a></h2>
+                <section id="main-content">
+                    <div class="row">
+						<div class="col">
+							<div class="card card-small mb-4">
+								<div class="card-body p-0 pb-3 text-center">
+									<table class="table mb-0">
+										<thead class="bg-light">
+											<tr>
+<!--                                                <th scope="col" class="border-0">username</th>-->
+<!--                                                <th scope="col" class="border-0">password</th>-->
+                                                <th scope="col" class="border-0">#</th>
+												<th scope="col" class="border-0">姓名</th>
+												<th scope="col" class="border-0">性别</th>
+                                                <th scope="col" class="border-0">电话</th>
+                                                <th scope="col" class="border-0">邮箱</th>
+                                                <th scope="col" class="border-0">学院</th>
+                                                <th scope="col" class="border-0">专业</th>
+                                                <th scope="col" class="border-0">年级</th>
+                                                <th scope="col" class="border-0">政治面貌</th>
+                                                <th scope="col" class="border-0">籍贯</th>
+                                                <th scope="col" class="border-0">操作</th>
+
+
+											</tr>
+										</thead>
+										<tbody>
+<!--                                        <tr th:each="stu:${stus}">-->
+<!--                                            <td th:text="${stu.username}"></td>-->
+<!--                                            <td th:text="${stu.password}"></td>-->
+<!--                                        </tr>-->
+                                        <tr th:each="student:${students}">
+
+                                            <td th:text="${student.SID}"></td>
+                                            <td th:text="${student.sname}"></td>
+                                            <td th:text="${student.ssex}"></td>
+                                            <td th:text="${student.sphone}"></td>
+                                            <td th:text="${student.semail}"></td>
+                                            <td th:text="${student.scollege}"></td>
+                                            <td th:text="${student.sdept}"></td>
+                                            <td th:text="${student.sgrade}"></td>
+                                            <td th:text="${student.sstatus}"></td>
+                                            <td th:text="${student.sbirthplace}"></td>
+                                            <td>
+                                                <a class="btn btn-sm btn-primary" th:href="@{/editStudent_}+${student.SID}">修改</a>
+
+                                                <button th:attr="del_uri=@{/deleteStudent},SID=${student.SID}" class="btn btn-sm btn-danger deleteBtn">删除</button>
+                                            </td>
+                                        </tr>
+
+										</tbody>
+									</table>
+                                    <form id="deleteEmpForm"  method="post" action="/deleteStudent">
+                                        <input type="hidden" name="_method" value="delete"/>
+                                        <input type="hidden" class="sidToDelete" name="SID" value="_test"/>
+                                    </form>
+								</div>
+							</div>
+						</div>
+					</div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+
+
+    
+    <!-- jquery vendor -->
+    <script src="assets/js/lib/jquery.min.js"></script>
+    <script src="assets/js/lib/jquery.nanoscroller.min.js"></script>
+    <!-- nano scroller -->
+    <script src="assets/js/lib/menubar/sidebar.js"></script>
+    <script src="assets/js/lib/preloader/pace.min.js"></script>
+    <!-- sidebar -->
+    
+    <!-- bootstrap -->
+
+    <script src="assets/js/lib/bootstrap.min.js"></script><script src="assets/js/scripts.js"></script>
+    <!-- scripit init-->
+    <script src="assets/js/lib/data-table/datatables.min.js"></script>
+    <script src="assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
+    <script src="assets/js/lib/data-table/dataTables.buttons.min.js"></script>
+    <script src="assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
+    <script src="assets/js/lib/data-table/jszip.min.js"></script>
+    <script src="assets/js/lib/data-table/pdfmake.min.js"></script>
+    <script src="assets/js/lib/data-table/vfs_fonts.js"></script>
+    <script src="assets/js/lib/data-table/buttons.html5.min.js"></script>
+    <script src="assets/js/lib/data-table/buttons.print.min.js"></script>
+    <script src="assets/js/lib/data-table/buttons.colVis.min.js"></script>
+    <script src="assets/js/lib/data-table/datatables-init.js"></script>
+
+
+    <script>
+        $(".deleteBtn").click(function(){
+            //删除当前学生
+            $(".sidToDelete").val($(this).attr("SID"));
+            $("#deleteEmpForm").submit();
+            return false;
+        });
+    </script>
+
+
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>课程教学</title>
+
+    <!-- Styles -->
+    <link href="assets/css/lib/font-awesome.min.css" rel="stylesheet">
+    <link href="assets/css/lib/themify-icons.css" rel="stylesheet">
+    <link href="assets/css/lib/datatable/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/css/lib/datatable/buttons.bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/css/lib/menubar/sidebar.css" rel="stylesheet">
+    <link href="assets/css/lib/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/lib/helper.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+<div th:replace="commons/sbar::topbar"/>
+<div th:replace="commons/sbar::sidebar"/>
+	<div class="content-wrap">
+        <div class="main">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-8 p-r-0 title-margin-right">
+                        <div class="page-header">
+                            <div class="page-title">
+                                <h1>以下为
+									<span>
+									&nbsp;(id=[[${CID}]])&nbsp;
+									</span>
+									课程的课程群组
+								</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <section id="main-content">
+                    <div class="row">
+						<div class="col">
+							<div class="card card-small mb-4">
+								<div class="card-body p-0 pb-3 text-center">
+									<table class="table mb-0">
+										<thead class="bg-light">
+											<tr>
+												<th scope="col" class="border-0">群组ID</th>
+												<th scope="col" class="border-0">群组名称</th>
+												<th scope="col" class="border-0">操作</th>
+											</tr>
+										</thead>
+										<tbody>
+                                        <tr th:each="gro:${groups}">
+                                            <td th:text="${gro.GID}"></td>
+                                            <td>[[${gro.Gname}]]</td>
+
+                                            <td>  <a class="btn btn-sm btn-primary" th:href="@{/message_}+${gro.GID}">进入群组</a></td>
+                                        </tr>
+<!--											<tr>-->
+<!--												<td>1</td>-->
+<!--												<td><a>帅哥老师后援会</a></td>-->
+<!--&lt;!&ndash;												<td><a href="message">进入群组</a></td>&ndash;&gt;-->
+<!--                                                <td>  <a class="btn btn-sm btn-primary" th:href="@{/message/}+${1}">进入群组</a></td>-->
+
+<!--                                                <td>2</td>-->
+<!--                                                <td><a>教练の后援会</a></td>-->
+<!--                                                <td>  <a class="btn btn-sm btn-primary" th:href="@{/message/}+${2}">进入群组</a></td>-->
+<!--											</tr>-->
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+
+
+    
+    <!-- jquery vendor -->
+    <script src="assets/js/lib/jquery.min.js"></script>
+    <script src="assets/js/lib/jquery.nanoscroller.min.js"></script>
+    <!-- nano scroller -->
+    <script src="assets/js/lib/menubar/sidebar.js"></script>
+    <script src="assets/js/lib/preloader/pace.min.js"></script>
+    <!-- sidebar -->
+    
+    <!-- bootstrap -->
+
+    <script src="assets/js/lib/bootstrap.min.js"></script><script src="assets/js/scripts.js"></script>
+    <!-- scripit init-->
+    <script src="assets/js/lib/data-table/datatables.min.js"></script>
+    <script src="assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
+    <script src="assets/js/lib/data-table/dataTables.buttons.min.js"></script>
+    <script src="assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
+    <script src="assets/js/lib/data-table/jszip.min.js"></script>
+    <script src="assets/js/lib/data-table/pdfmake.min.js"></script>
+    <script src="assets/js/lib/data-table/vfs_fonts.js"></script>
+    <script src="assets/js/lib/data-table/buttons.html5.min.js"></script>
+    <script src="assets/js/lib/data-table/buttons.print.min.js"></script>
+    <script src="assets/js/lib/data-table/buttons.colVis.min.js"></script>
+    <script src="assets/js/lib/data-table/datatables-init.js"></script>
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
